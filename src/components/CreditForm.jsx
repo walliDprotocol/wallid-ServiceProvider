@@ -9,7 +9,7 @@ render() {
     return (
     <form onSubmit={this.handleSubmit}>
       <div class="form-group">
-        <label>Choise your project</label>
+        <label>Choose your project</label>
         <select class="form-control" required>
           <option value="NewCar">New Car</option>
           <option value="NewHouse">New House</option>

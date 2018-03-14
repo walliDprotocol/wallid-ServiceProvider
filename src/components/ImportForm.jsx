@@ -42,7 +42,7 @@ render() {
         <input type="text" name="walletAddress" onChange={this.handleChange} class="form-control" placeholder="Enter wallet address" required/>
       </div>
       <div class="form-group">
-        <label>Private key:</label>
+        <label>Password:</label>
         <input type="password" name="password" onChange={this.handleChange} class="form-control" required />
       </div>
       <Link to ='/KycVerified' ><button>Identify</button></Link>
