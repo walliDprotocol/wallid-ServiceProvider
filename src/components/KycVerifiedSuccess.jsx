@@ -8,7 +8,7 @@ class KycVerifiedSuccess extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        show: false,
+        popup: false,
     };
 
   }
@@ -43,17 +43,15 @@ render() {
         <label>NIF</label>
         <input type="text" value="0987654321" class="form-control" placeholder="Enter wallet address" required/>
       </div>
-
-      <button onClick={() => this.setState({ show: true })}>Alert</button>
       <SweetAlert
-        show={this.state.show}
+        show={this.state.popup}
         title="Thank you"
         text="Thank you for applying to a personal credit with DemoBank.
         We sent you our official proposal to your email."
         confirmButtonColor = "#FFCC00"
-        onConfirm={() => this.setState({ show: false })}
-        confirmBottonColor
+        onConfirm={() => this.setState({ popup: false })}
       />
+    <button onClick={() => this.setState({ popup: true })}>Apply</button>
     </form>
   );
 }
