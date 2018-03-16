@@ -1,9 +1,25 @@
 import React from "react";
+import { withSwalInstance } from 'sweetalert2-react';
+import swal from 'sweetalert2';
+
+const SweetAlert = withSwalInstance(swal);
 
 class KycVerifiedSuccess extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        show: false,
+    };
+
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+  }
+
 render() {
   return (
-    <form onSubmit={this.handleSubmit} >
+    <form>
       <div class="form-group">
         <label>Your Identity Verified with Cartão do Cidadão - República Portuguesa</label>
       </div>
@@ -27,7 +43,17 @@ render() {
         <label>NIF</label>
         <input type="text" value="0987654321" class="form-control" placeholder="Enter wallet address" required/>
       </div>
-      <button>Aplly</button>
+
+      <button onClick={() => this.setState({ show: true })}>Alert</button>
+      <SweetAlert
+        show={this.state.show}
+        title="Thank you"
+        text="Thank you for applying to a personal credit with DemoBank.
+        We sent you our official proposal to your email."
+        confirmButtonColor = "#FFCC00"
+        onConfirm={() => this.setState({ show: false })}
+        confirmBottonColor
+      />
     </form>
   );
 }
