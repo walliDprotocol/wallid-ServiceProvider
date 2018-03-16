@@ -4,7 +4,7 @@ function Footer(/*props*/) {
   return (
     <footer>
       <br />
-      <p>CrediBank @2018 | CrediBank - Automatic Credit Simulator.</p>
+      <p>CrediBank @2018</p>
     </footer>
   );
 }

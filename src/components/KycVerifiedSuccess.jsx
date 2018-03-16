@@ -46,7 +46,7 @@ render() {
       <SweetAlert
         show={this.state.popup}
         title="Thank you"
-        text="Thank you for applying to a personal credit with DemoBank.
+        text="Thank you for applying to a personal credit with CrediBank.
         We sent you our official proposal to your email."
         confirmButtonColor = "#FFCC00"
         onConfirm={() => this.setState({ popup: false })}
