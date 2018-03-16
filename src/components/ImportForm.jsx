@@ -22,6 +22,12 @@ render() {
         <label>Encryption password:</label>
         <input type="password" name="password" onChange={this.handleChange} class="form-control" placeholder="Paste your BlockID encryption password" required />
       </div>*/}
+      <input type="submit" value="Connect to metamask" /> Recommended action
+      <p><a href="https://metamask.io/">what is Metamask?</a></p>
+        <div class="form-group">
+          <label>Paste Private Key: Not recommended</label>
+          <input type="password" name="password" onChange={this.handleChange} class="form-control" placeholder="Paste Private Key: Not recommended" />
+        </div>
       <Link to ='/KycVerified' ><button>Next Step</button></Link>
     </form>
   );
