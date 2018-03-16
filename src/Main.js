@@ -14,7 +14,9 @@ class Main extends Component {
     return (
       <HashRouter>
         <div>
-          <h1>DemoBANK</h1>
+          <div className="logo">
+            <img src={require('./credibank_logo.png')} alt="MyEtherID Logo"/>
+          </div>
           <ul className="header">
             <li><NavLink exact to="/">Credit Simulator</NavLink></li>
             <li><NavLink to="">Products</NavLink></li>
