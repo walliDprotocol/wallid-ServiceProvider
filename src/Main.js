@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 
 import Home from './Home';
 import Footer from './Footer';
+import CardSelect from './CardSelect';
 import KycVerify from './KycVerify';
 import KycVerified from './KycVerified';
 
@@ -26,6 +27,7 @@ class Main extends Component {
           </ul>
           <div className="content">
           <Route exact path="/" component={Home}/>
+          <Route exact path="/CardSelect" component={CardSelect}/>
           <Route path="/KycVerify" component={KycVerify}/>
           <Route path="/KycVerified" component={KycVerified}/>
           </div>

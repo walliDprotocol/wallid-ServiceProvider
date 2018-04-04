@@ -12,6 +12,7 @@ window.addEventListener('reload', function () {
   }else{
     console.log("No web3 detected. Falling back to http://localhost:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
     window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"))
+    alert('No web3? You should consider trying MetaMask!')
   }
 });
 
@@ -19,7 +20,9 @@ class ImportForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      step: 0,
       data: '',
+      dataCrypted: '',
       ContractAddress : '0x82209352470b2f22f5a6874790114d5651a75285',
       ContractInstance : null,
       password: ''
@@ -36,6 +39,10 @@ class ImportForm extends React.Component {
         console.log('Count items :  ', data);
         console.log('total items #', data.c[0] );
       });
+      this.getInfoCrypted();
+
+    }else {
+      alert('No web3? You should consider trying MetaMask!')
     }
   }
 
@@ -49,7 +56,7 @@ class ImportForm extends React.Component {
 
   handleSubmit(event) {
     console.log("handleSubmit");
-    this.getInfo()
+    this.getInfo();
     event.preventDefault();
   }
 
@@ -91,6 +98,7 @@ class ImportForm extends React.Component {
           loadData.push({ 'item' : i, 'value' : dataAttribute[i]})
         }
         this.state.data = loadData
+        this.state.step = 1
         this.forceUpdate()
 
       }
@@ -102,126 +110,145 @@ class ImportForm extends React.Component {
     });
   }
 
+  getInfoCrypted()
+  {
+    this.state.ContractInstance.getInfo( (err, data) => {
+      console.log('get Info Result ', data);
+      console.log((data[0]));
+      console.log(this.hex2a(data[1]));
+      console.log(this.hex2a(data[2]));
+
+      this.state.dataCrypted = this.hex2a(data[1])+this.hex2a(data[2])
+      this.forceUpdate()
+
+    });
+  }
+
   render() {
-    if (this.state.data) {
-      return (
-        <div>
-          <h2>
-            Step 3 - Verify your identity with BlockID
-          </h2>
-          <BootstrapTable
-            data={this.state.data}
-            hover
-            condensed
-            >
-            <TableHeaderColumn
-              dataField="item"
-              width='50%'
-              isKey={true}>Item</TableHeaderColumn>
-            <TableHeaderColumn dataField="value" width='50%'>Value</TableHeaderColumn>
-          </BootstrapTable>
-          <Link to ='/KycVerified' >
-            <button>
-              Verify BlockID
-            </button>
-          </Link>
-          <p>
-            <a href="https://blockid.herokuapp.com">
-              What is Verify BlockID?
-            </a>
-          </p>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <h2>
-            Step 2 - Prove your identity with BlockID
-          </h2>
-          <form onSubmit={this.handleSubmit} >
-            <div class="form-group">
-              <label>
-                Select identity type:
-              </label>
-              <select class="form-control" required>
-                <option value="grapefruit">
-                  Cartão do Cidadão - República Portuguesa
-                </option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>
-                Encryption password:
-              </label>
-              <input
-                type="password"
-                name="password"
-                onChange={this.handleChange}
-                class="form-control"
-                placeholder="Write your BlockID encryption password"
-                required />
-              <p>
-                <a href="https://blockid.herokuapp.com">
-                  What is BlockID Encrytion Password?
-                </a>
-              </p>
-            </div>
-            <p>
-              To prove your identity with BlockID you can choose between connect with metamask or Paste Private Key
-            </p>
-            <div class="row ">
-              <div class="col-md-1 ">
+    if(window.web3){
+      switch (this.state.step) {
+        case 0:
+        return (
+          <div>
+            <h2>
+              Step 3 - Local decrypt your data
+            </h2>
+            <form onSubmit={this.handleSubmit} >
+              <div class="form-group">
+                <label>
+                  Your Encrypted data:
+                </label>
+                <textarea
+                  rows="5"
+                  value={this.state.dataCrypted}
+                  type="text"
+                  name="EncryptedData"
+                  class="form-control"
+                  />
               </div>
-              <div class="col-md-4 colorSubmit">
-                <br / >
-                  {/*<Link to ='/KycVerified' ><button>Connect with metamask</button></Link>*/}
-                  <input
-                    type="submit"
-                    value="Connect with metamask" />
-                  Recommended action
-                  <p>
-                    <a href="https://metamask.io/">
-                      what is Metamask?
-                    </a>
-                  </p>
-                </div>
-                <div class="col-md-2 ">
-                  <p>or</p>
-                </div>
-                <div class="col-md-4 colorSubmit">
-                  <div class="form-group">
-                    <label>
-                      Ether Wallet Address: Not recommended
-                    </label>
-                    <input
-                      type="text"
-                      name="walletAddress"
-                      onChange={this.handleChange}
-                      class="form-control"
-                      placeholder="Enter your wallet address"
-                      />
-                  </div>
-                  <div class="form-group">
-                    <label>
-                      Paste Private Key: Not recommended
-                    </label>
-                    <input
-                      type="password"
-                      name="password"
-                      onChange={this.handleChange}
-                      class="form-control"
-                      placeholder="Paste Private Key: Not recommended" />
-                  </div>
-                  <input type="submit" value="Submit" />
-                  <p>
-                  </p>
-                </div>
+              <div class="form-group">
+                <label>
+                  Encryption password:
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  onChange={this.handleChange}
+                  class="form-control"
+                  placeholder="Write your BlockID encryption password"
+                  required />
+                <p>
+                  <a href="https://blockid.herokuapp.com">
+                    What is BlockID Encrytion Password?
+                  </a>
+                </p>
+              </div>
+              <div class="form-group">
+                <input
+                  type="submit"
+                  value="Local decrypt your data" />
+                <p>
+                  <a href="https://metamask.io/">
+                    what it means?
+                  </a>
+                </p>
               </div>
             </form>
           </div>
         );
+        case 1:
+        return (
+          <div>
+            <h2>
+              Step 3 - Local decrypt your data
+            </h2>
+            <div class="form-group">
+              <label>
+                Your Encrypted data:
+              </label>
+              <textarea
+                rows="5"
+                value={this.state.dataCrypted}
+                type="text"
+                name="EncryptedData"
+                class="form-control"
+                />
+            </div>
+            <label>
+              Your Decrypted data:
+            </label>
+            <BootstrapTable
+              data={this.state.data}
+              hover
+              condensed
+              >
+              <TableHeaderColumn
+                dataField="item"
+                width='50%'
+                isKey={true}>Item</TableHeaderColumn>
+              <TableHeaderColumn dataField="value" width='50%'>Value</TableHeaderColumn>
+            </BootstrapTable>
+            <p>
+              Your identity have to be verified by VerifyID to apply for credit with CrediBank.
+            </p>
+            <Link to ='/KycVerified' >
+              <button>
+                VerifyID
+              </button>
+            </Link>
+            <p>
+              <a href="https://blockid.herokuapp.com">
+                What is VerifyID?
+              </a>
+            </p>
+          </div>
+        );
+        default:
+        break;
       }
+    }else{
+      return (
+        <div>
+          <p>
+            No MetaMask detected.
+          </p>
+          <p>
+            To prove your identity connect with metamask.
+          </p>
+          <p>
+            <a href="https://metamask.io/">
+              What is Metamask?
+            </a>
+          </p>
+          <p>
+            <a href="https://metamask.io/">
+              Download Metamask?
+            </a>
+          </p>
+        </div>
+      );
     }
   }
+}
 
-  export default ImportForm;
+export default ImportForm;

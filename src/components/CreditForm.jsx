@@ -51,7 +51,7 @@ class CreditForm extends React.Component {
               class="form-control"
               required/>
           </div>
-          <Link to ='/KycVerify' >
+          <Link to ='/CardSelect' >
             <button>
               Next Step
             </button>
