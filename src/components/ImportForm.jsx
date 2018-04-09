@@ -166,7 +166,7 @@ class ImportForm extends React.Component {
               <div class="form-group">
                 <input
                   type="submit"
-                  value="Decrypt your ID Data" />
+                  value="Decrypt ID" />
                 <p>
                   <a href="https://metamask.io/">
                     what it means?
