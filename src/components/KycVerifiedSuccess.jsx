@@ -20,9 +20,12 @@ class KycVerifiedSuccess extends React.Component {
     return (
       <form>
         <div class="form-group">
-          <label>
-            Your Identity was verified by BlockID. Now you are ready to apply for credit with CrediBank.
-          </label>
+          <p>
+            Your identity  attributes were successfully verified by BlockID. You can now submit your application to personal credit with Credibank.
+          </p>
+          <p>
+            Please confirm your application details before submitting.
+          </p>
         </div>
         <SweetAlert
           show={this.state.popup}
@@ -32,7 +35,7 @@ class KycVerifiedSuccess extends React.Component {
           confirmButtonColor = "#FFCC00"
           onConfirm={() => this.setState({ popup: false })}
           />
-        <button onClick={() => this.setState({ popup: true })}>Apply</button>
+        <button onClick={() => this.setState({ popup: true })}>Submit</button>
       </form>
     );
   }

@@ -61,12 +61,6 @@ class CardForm extends React.Component {
                 Connect with metamask
               </button>
             </Link>
-            Recommended action
-            <p>
-              <a href="https://metamask.io/">
-                What is Metamask?
-              </a>
-            </p>
           </form>
         </div>
       );

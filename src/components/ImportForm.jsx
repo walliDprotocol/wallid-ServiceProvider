@@ -25,7 +25,7 @@ class ImportForm extends React.Component {
       dataCrypted: '',
       ContractAddress : '0x82209352470b2f22f5a6874790114d5651a75285',
       ContractInstance : null,
-      password: ''
+      password: '20THIS_WILL_USE_METAMASK_SECURITY18'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -131,12 +131,12 @@ class ImportForm extends React.Component {
         return (
           <div>
             <h2>
-              Step 3 - Local decrypt your data
+              Step 3 - Decrypt your data Locally
             </h2>
             <form onSubmit={this.handleSubmit} >
               <div class="form-group">
                 <label>
-                  Your Encrypted data:
+                  Your encrypted data:
                 </label>
                 <textarea
                   rows="5"
@@ -146,7 +146,7 @@ class ImportForm extends React.Component {
                   class="form-control"
                   />
               </div>
-              <div class="form-group">
+              {/*<div class="form-group">
                 <label>
                   Encryption password:
                 </label>
@@ -162,11 +162,11 @@ class ImportForm extends React.Component {
                     What is BlockID Encrytion Password?
                   </a>
                 </p>
-              </div>
+              </div>*/}
               <div class="form-group">
                 <input
                   type="submit"
-                  value="Local decrypt your data" />
+                  value="Decrypt your ID Data" />
                 <p>
                   <a href="https://metamask.io/">
                     what it means?
@@ -180,11 +180,11 @@ class ImportForm extends React.Component {
         return (
           <div>
             <h2>
-              Step 3 - Local decrypt your data
+              Step 3 - Decrypt your data Locally
             </h2>
             <div class="form-group">
               <label>
-                Your Encrypted data:
+                Your encrypted data:
               </label>
               <textarea
                 rows="5"
@@ -195,7 +195,7 @@ class ImportForm extends React.Component {
                 />
             </div>
             <label>
-              Your Decrypted data:
+              Your decrypted data:
             </label>
             <BootstrapTable
               data={this.state.data}
@@ -209,18 +209,13 @@ class ImportForm extends React.Component {
               <TableHeaderColumn dataField="value" width='50%'>Value</TableHeaderColumn>
             </BootstrapTable>
             <p>
-              Your identity have to be verified by VerifyID to apply for credit with CrediBank.
+              Please submit your data to verification.
             </p>
             <Link to ='/KycVerified' >
               <button>
-                VerifyID
+                Submit
               </button>
             </Link>
-            <p>
-              <a href="https://blockid.herokuapp.com">
-                What is VerifyID?
-              </a>
-            </p>
           </div>
         );
         default:
