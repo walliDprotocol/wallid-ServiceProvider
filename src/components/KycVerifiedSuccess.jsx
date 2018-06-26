@@ -21,7 +21,7 @@ class KycVerifiedSuccess extends React.Component {
       <form>
         <div class="form-group">
           <p>
-            Your identity  attributes were successfully verified by BlockID. You can now submit your application to personal credit with Credibank.
+            Your identity  attributes were successfully verified by Wallid. You can now submit your application to personal credit with Credibank.
           </p>
           <p>
             Please confirm your application details before submitting.

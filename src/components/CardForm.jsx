@@ -120,8 +120,8 @@ class CardForm extends React.Component {
               To prove your identity connect with metamask.
             </p>
             <p>
-              <a href="https://blockid.herokuapp.com">
-                What is BlockID?
+              <a href="https://www.myetherid.io">
+                What is Wallid?
               </a>
             </p>
             <p>

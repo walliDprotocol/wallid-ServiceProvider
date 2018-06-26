@@ -1,7 +1,7 @@
 import React from "react";
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import Web3 from 'web3'
-import BlockIdContract from '../blockid/BlockId.js';
+import WallidContract from '../wallid/wallid.js';
 import { Link } from 'react-router-dom';
 var CryptoJS = require("crypto-js");
 
@@ -32,7 +32,7 @@ class ImportForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     if(window.web3){
-      const MyContract = window.web3.eth.contract(BlockIdContract.abi)
+      const MyContract = window.web3.eth.contract(WallidContract.abi)
       this.state.ContractInstance = MyContract.at(this.state.ContractAddress)
 
       // this.state.ContractInstance.countItemList( (err, data) => {
@@ -150,11 +150,11 @@ class ImportForm extends React.Component {
                   name="password"
                   onChange={this.handleChange}
                   class="form-control"
-                  placeholder="Write your BlockID encryption password"
+                  placeholder="Write your Wallid encryption password"
                   required />
                 <p>
-                  <a href="https://blockid.herokuapp.com">
-                    What is BlockID Encrytion Password?
+                  <a href="https://www.myetherid.io">
+                    What is Wallid Encrytion Password?
                   </a>
                 </p>
               </div>*/}
