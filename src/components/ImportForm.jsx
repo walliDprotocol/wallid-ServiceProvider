@@ -23,7 +23,7 @@ class ImportForm extends React.Component {
       step: 0,
       data: '',
       dataCrypted: '',
-      ContractAddress : '0x82209352470b2f22f5a6874790114d5651a75285',
+      ContractAddress : '0x7f852d0be239e1a547b07c88aa54cfcc98a80f49',
       ContractInstance : null,
       password: '20THIS_WILL_USE_METAMASK_SECURITY18'
     };
@@ -35,10 +35,10 @@ class ImportForm extends React.Component {
       const MyContract = window.web3.eth.contract(BlockIdContract.abi)
       this.state.ContractInstance = MyContract.at(this.state.ContractAddress)
 
-      this.state.ContractInstance.countItemList( (err, data) => {
-        console.log('Count items :  ', data);
-        console.log('total items #', data.c[0] );
-      });
+      // this.state.ContractInstance.countItemList( (err, data) => {
+      //   console.log('Count items :  ', data);
+      //   console.log('total items #', data.c[0] );
+      // });
       this.getInfoCrypted();
 
     }else {
@@ -70,32 +70,29 @@ class ImportForm extends React.Component {
 
   getInfo()
   {
-    this.state.ContractInstance.getInfo( (err, data) => {
-      console.log('get Info Result ', data);
+    this.state.ContractInstance.getIdtData( "CC_PT", (err, data) => {
+      console.log('get Info Result:', data);
       var loadData = [];
-      var dataAttribute = [];
+      var identifyId = {}
 
       try {
-        var bytes =  CryptoJS.AES.decrypt(this.hex2a(data[1]) ,this.state.password);
+        var bytes =  CryptoJS.AES.decrypt(this.hex2a(data[0]) ,this.state.password);
         var ret_1 = bytes.toString(CryptoJS.enc.Utf8);
-        dataAttribute = JSON.parse(ret_1);
-        //console.log(dataAttribute);
-        //console.log(Object.keys(dataAttribute));
-        for(var i in dataAttribute){
+        identifyId = JSON.parse(ret_1);
+
+        //console.log('Identify ', identifyId);
+        //console.log(Object.keys(identifyId));
+
+        for(var i in identifyId.identityAttributes){
           //console.log(i);
-          //console.log(dataAttribute[i]);
-          loadData.push({ 'item' : i, 'value' : dataAttribute[i]})
+          //console.log(identifyId[i]);
+          loadData.push({ 'item' : i, 'value' : identifyId.identityAttributes[i]})
         }
 
-        bytes =  CryptoJS.AES.decrypt(this.hex2a(data[2]),this.state.password);
-        var ret_2 = bytes.toString(CryptoJS.enc.Utf8);
-        dataAttribute = JSON.parse(ret_2)
-        //console.log(dataAttribute);
-        //console.log(Object.keys(dataAttribute));
-        for(i in dataAttribute){
+        for( i in identifyId.addressAttributes){
           //console.log(i);
-          //console.log(dataAttribute[i]);
-          loadData.push({ 'item' : i, 'value' : dataAttribute[i]})
+          //console.log(identifyId[i]);
+          loadData.push({ 'item' : i, 'value' : identifyId.addressAttributes[i]})
         }
         this.state.data = loadData
         this.state.step = 1
@@ -112,13 +109,11 @@ class ImportForm extends React.Component {
 
   getInfoCrypted()
   {
-    this.state.ContractInstance.getInfo( (err, data) => {
+    this.state.ContractInstance.getIdtData( "CC_PT", (err, data) => {
       console.log('get Info Result ', data);
       console.log((data[0]));
-      console.log(this.hex2a(data[1]));
-      console.log(this.hex2a(data[2]));
 
-      this.state.dataCrypted = this.hex2a(data[1])+this.hex2a(data[2])
+      this.state.dataCrypted = this.hex2a(data[0])
       this.forceUpdate()
 
     });
