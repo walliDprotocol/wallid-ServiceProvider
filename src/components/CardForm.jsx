@@ -40,17 +40,23 @@ class CardForm extends React.Component {
       return (
         <div>
           <h2>
-            Step 2 - Select your identity type
+            Step 2 - Load your identity
           </h2>
           <form onSubmit={this.handleSubmit} >
             <div class="form-group">
               <label>
+                Select StoreID Provider:
+              </label>
+              <select class="form-control" required>
+                <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
+                <option>CaixaMagica@StoreID</option>
+              </select>
+              <label>
                 Select identity type:
               </label>
               <select class="form-control" required>
-                <option value="grapefruit">
-                  Cartão do Cidadão - República Portuguesa
-                </option>
+                <option disabled="disabled" selected="selected">Select an valid identity</option>
+                <option>Cartão do Cidadão - República Portuguesa</option>
               </select>
             </div>
             <p>
@@ -68,17 +74,23 @@ class CardForm extends React.Component {
       return (
         <div>
           <h2>
-            Step 2 - Select your identity type
+            Step 2 - Load your identity
           </h2>
           <form onSubmit={this.handleSubmit} >
             <div class="form-group">
               <label>
+                Select StoreID Provider:
+              </label>
+              <select class="form-control" required>
+                <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
+                <option>CaixaMagica@StoreID</option>
+              </select>
+              <label>
                 Select identity type:
               </label>
               <select class="form-control" required>
-                <option value="grapefruit">
-                  Cartão do Cidadão - República Portuguesa
-                </option>
+                <option disabled="disabled" selected="selected">Select an valid identity</option>
+                <option>Cartão do Cidadão - República Portuguesa</option>
               </select>
             </div>
             <p>
@@ -100,17 +112,23 @@ class CardForm extends React.Component {
       return (
         <div>
           <h2>
-            Step 2 - Select your identity type
+            Step 2 - Load your identity
           </h2>
           <form onSubmit={this.handleSubmit} >
             <div class="form-group">
               <label>
+                Select StoreID Provider:
+              </label>
+              <select class="form-control" required>
+                <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
+                <option>CaixaMagica@StoreID</option>
+              </select>
+              <label>
                 Select identity type:
               </label>
               <select class="form-control" required>
-                <option value="grapefruit">
-                  Cartão do Cidadão - República Portuguesa
-                </option>
+                <option disabled="disabled" selected="selected">Select an valid identity</option>
+                <option>Cartão do Cidadão - República Portuguesa</option>
               </select>
             </div>
             <p>

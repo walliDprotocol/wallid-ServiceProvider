@@ -44,12 +44,13 @@ class CreditForm extends React.Component {
             <label>
               How often would you like to receive payment tranches? monthly, every 3 month, every 6 month, once a year
             </label>
-            <input
-              type="text"
-              name="password"
-              onChange={this.handleChange}
-              class="form-control"
-              required/>
+            <select class="form-control" required>
+              <option disabled="disabled" selected="selected">Select how often you like to receive</option>
+              <option>monthly</option>
+              <option>every 3 month</option>
+              <option>every 6 month</option>
+              <option>once a year</option>
+            </select>
           </div>
           <Link to ='/CardSelect' >
             <button>
