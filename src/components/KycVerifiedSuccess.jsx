@@ -20,11 +20,14 @@ class KycVerifiedSuccess extends React.Component {
     return (
       <form>
         <div class="form-group">
+          <h2>
+            Step 5 - Submit your application
+          </h2>
           <p>
-            Your identity  attributes were successfully verified by Wallid. You can now submit your application to personal credit with Credibank.
+            Your identity attributes were successfully verified by Wallid.
           </p>
           <p>
-            Please confirm your application details before submitting.
+            You can now submit your application to personal credit with Credibank.
           </p>
         </div>
         <SweetAlert

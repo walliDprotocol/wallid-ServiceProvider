@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import KycVerifiedSuccess from './components/KycVerifiedSuccess';
+import ImportForm from './components/ImportForm';
 
-class KycVerified extends Component {
+class Import extends Component {
   render() {
     return (
       <div>
@@ -10,12 +10,11 @@ class KycVerified extends Component {
         <p>Welcome to CrediBank automatic Personal Credit application.</p>
         <p>Please follow through the application process. It will take you less then five minutes and it will provide an official credit proposal, ready to be accepted.</p>
         <p>Your personal funding might be just 5 minutes away.</p>
-      <h2>ID successfully verified</h2>
         <br />
-        <KycVerifiedSuccess />
+        <ImportForm />
       </div>
     );
   }
 }
 
-export default KycVerified;
+export default Import;

@@ -28,8 +28,6 @@ class CreditForm extends React.Component {
               </option>
               <option value="Private">Holidays</option>
             </select>
-          </div>
-          <div class="form-group">
             <label>
               How much funding do you need : (total in euros)
             </label>
@@ -39,8 +37,6 @@ class CreditForm extends React.Component {
               onChange={this.handleChange}
               class="form-control"
               required/>
-          </div>
-          <div class="form-group">
             <label>
               How often would you like to receive payment tranches? monthly, every 3 month, every 6 month, once a year
             </label>

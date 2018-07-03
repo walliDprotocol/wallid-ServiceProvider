@@ -62,7 +62,7 @@ class CardForm extends React.Component {
             <p>
               To prove your identity connect with metamask
             </p>
-            <Link to ='/KycVerify' >
+            <Link to ='/Import' >
               <button>
                 Connect with metamask
               </button>
