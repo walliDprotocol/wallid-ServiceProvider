@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import KycVerifiedSuccess from './components/KycVerifiedSuccess';
 
 class KycVerified extends Component {
   render() {
@@ -12,7 +11,6 @@ class KycVerified extends Component {
         <p>Your personal funding might be just 5 minutes away.</p>
       <h2>ID successfully verified</h2>
         <br />
-        <KycVerifiedSuccess />
       </div>
     );
   }

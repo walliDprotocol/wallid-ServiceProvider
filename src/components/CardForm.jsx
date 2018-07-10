@@ -56,7 +56,7 @@ class CardForm extends React.Component {
               </label>
               <select class="form-control" required>
                 <option disabled="disabled" selected="selected">Select an valid identity</option>
-                <option>Cartão do Cidadão - República Portuguesa</option>
+                <option>Cartão de Cidadão - República Portuguesa</option>
               </select>
             </div>
             <p>
@@ -90,7 +90,7 @@ class CardForm extends React.Component {
               </label>
               <select class="form-control" required>
                 <option disabled="disabled" selected="selected">Select an valid identity</option>
-                <option>Cartão do Cidadão - República Portuguesa</option>
+                <option>Cartão de Cidadão - República Portuguesa</option>
               </select>
             </div>
             <p>
@@ -128,7 +128,7 @@ class CardForm extends React.Component {
               </label>
               <select class="form-control" required>
                 <option disabled="disabled" selected="selected">Select an valid identity</option>
-                <option>Cartão do Cidadão - República Portuguesa</option>
+                <option>Cartão de Cidadão - República Portuguesa</option>
               </select>
             </div>
             <p>
