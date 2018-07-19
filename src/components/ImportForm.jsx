@@ -8,10 +8,11 @@ var Spinner = require('react-spinkit');
 
 const state = {
   STATE_LOADING_DATA: 0,
-  STATE_ENCRYPTED_DATA: 1,
-  STATE_DECRYPTED_DATA: 2,
-  STATE_VERIFIED_DATA:  3,
-  STATE_SUBMITED_DATA: 4
+  STATE_LOADING_DATA_FAIL: 1,
+  STATE_ENCRYPTED_DATA: 2,
+  STATE_DECRYPTED_DATA: 3,
+  STATE_VERIFIED_DATA:  4,
+  STATE_SUBMITED_DATA: 5
 };
 
 window.addEventListener('reload', function () {
@@ -30,6 +31,7 @@ class ImportForm extends React.Component {
     super(props);
     this.state = {
       step: state['STATE_LOADING_DATA'],
+      errorMsg: '',
       data: '',
       dataId: '',
       dataVerifyId: '',
@@ -263,17 +265,17 @@ class ImportForm extends React.Component {
       this.state.dataVerifyIdEncrypted = this.hex2a(wallid["veridyId"]);
 
       if(this.state.dataIdentityIdEncrypted === ""){
-        alert("Wallet Not Registered in WalliD. Please create at myetherid.io!");
+        this.state.errorMsg = "Wallet Not Registered in WalliD. Please create at myetherid.io!";
         console.log("Wallet Not Registered in WalliD. Please create at myetherid.io!");
-
+        this.state.step = state['STATE_LOADING_DATA_FAIL'];
       }else if(this.state.dataVerifyIdEncrypted === "STOREID_FAIL"){
-        alert("StoreId Fail. Wallet Not Registered. Please register again at myetherid.io!");
+        this.state.errorMsg = "StoreId Fail. Wallet Not Registered. Please register again at myetherid.io!";
         console.log("StoreId Fail. Wallet Not Registered. Please register again at myetherid.io!");
-
+        this.state.step = state['STATE_LOADING_DATA_FAIL'];
       }else{
         this.state.step = state['STATE_ENCRYPTED_DATA']
-        this.forceUpdate()
       }
+      this.forceUpdate()
 
     });
     // Dummy data
@@ -302,6 +304,20 @@ class ImportForm extends React.Component {
               <Spinner name="wandering-cubes" color="blue"/>
             </div>
             <br />
+          </div>
+        );
+        case state['STATE_LOADING_DATA_FAIL']:
+        return (
+          <div>
+            <form>
+              <div class="form-group">
+                <h2>
+                  We are sorry.
+                </h2>
+                <p>Loading data from the blockchain fail!</p>
+                <p>{this.state.errorMsg}</p>
+              </div>
+            </form>
           </div>
         );
         case state['STATE_ENCRYPTED_DATA']:
