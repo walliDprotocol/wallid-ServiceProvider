@@ -33,6 +33,7 @@ class ImportForm extends React.Component {
       data: '',
       dataId: '',
       dataVerifyId: '',
+      dataVerifyIdEncrypted: '',
       dataIdentityIdEncrypted: '',
       dataIdentityId: '',
       ContractAddress : '0x787e5fc4773cad0c45f287bf00daca402845b1b7',
@@ -192,12 +193,19 @@ class ImportForm extends React.Component {
     console.log("******************** GetInfo *******************************");
     var loadData = [];
     var identifyId = {}
+    var verifyId = {}
 
     try {
       var bytes =  CryptoJS.AES.decrypt(this.state.dataIdentityIdEncrypted ,this.state.password);
       var ret_1 = bytes.toString(CryptoJS.enc.Utf8);
       identifyId = JSON.parse(ret_1);
+
+      bytes =  CryptoJS.AES.decrypt(this.state.dataVerifyIdEncrypted ,this.state.password);
+      ret_1 = bytes.toString(CryptoJS.enc.Utf8);
+      verifyId = JSON.parse(ret_1);
+
       this.state.dataIdentityId = identifyId;
+      this.state.dataVerifyId = verifyId;
 
       console.log('Identify ', identifyId);
       console.log(Object.keys(identifyId));
@@ -252,7 +260,7 @@ class ImportForm extends React.Component {
 
       this.state.dataIdentityIdEncrypted = this.hex2a(wallid["identityId"]);
       this.state.idt = this.hex2a(wallid["idt"]);
-      this.state.dataVerifyId = this.hex2a(wallid["veridyId"]);
+      this.state.dataVerifyIdEncrypted = this.hex2a(wallid["veridyId"]);
       this.state.step = state['STATE_ENCRYPTED_DATA']
       this.forceUpdate()
     });
@@ -274,12 +282,14 @@ class ImportForm extends React.Component {
             <h2>
               Step 3 - Loading data from the blockchain
             </h2>
+            <br />
             <div align="center">
-              <p>
+              <h2>
                 Please wait....
-              </p>
+              </h2>
               <Spinner name="wandering-cubes" color="blue"/>
             </div>
+            <br />
           </div>
         );
         case state['STATE_ENCRYPTED_DATA']:
@@ -290,6 +300,7 @@ class ImportForm extends React.Component {
             </h2>
             <form onSubmit={this.handleSubmit} >
               <div class="form-group">
+                <br />
                 <label>
                   Your encrypted data:
                 </label>
@@ -301,13 +312,16 @@ class ImportForm extends React.Component {
                   name="EncryptedData"
                   class="form-control"
                   />
+                </div>
+                <div class="form-group">
+                  <br />
                   <label>
-                    Your verifyId data:
+                    Your verifyId data encrypted:
                   </label>
                   <textarea
                     readOnly
                     rows="5"
-                    value={this.state.dataVerifyId}
+                    value={this.state.dataVerifyIdEncrypted}
                     type="text"
                     name="EncryptedData"
                     class="form-control"
@@ -336,6 +350,7 @@ class ImportForm extends React.Component {
               <div class="col-sm">
 
                 <div class="form-group">
+                  <br />
                   <label>
                     Your encrypted data:
                   </label>
@@ -347,13 +362,16 @@ class ImportForm extends React.Component {
                     name="EncryptedData"
                     class="form-control"
                     />
+                  <div class="form-group">
+                  </div>
+                  <br />
                     <label>
                       Your verifyId data:
                     </label>
                     <textarea
                       readOnly
                       rows="10"
-                      value={this.state.dataVerifyId}
+                      value={JSON.stringify(this.state.dataVerifyId)}
                       type="text"
                       name="EncryptedData"
                       class="form-control"
@@ -361,6 +379,7 @@ class ImportForm extends React.Component {
                 </div>
               </div>
               <div class="col-sm">
+                <br />
                 <label>
                   Your decrypted data:
                 </label>

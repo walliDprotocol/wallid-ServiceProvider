@@ -13,6 +13,7 @@ class CreditForm extends React.Component {
         </h2>
         <form onSubmit={this.handleSubmit}>
           <div class="form-group">
+            <br />
             <label>
               Select the purpose:
             </label>
