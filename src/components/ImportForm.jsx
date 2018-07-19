@@ -261,8 +261,20 @@ class ImportForm extends React.Component {
       this.state.dataIdentityIdEncrypted = this.hex2a(wallid["identityId"]);
       this.state.idt = this.hex2a(wallid["idt"]);
       this.state.dataVerifyIdEncrypted = this.hex2a(wallid["veridyId"]);
-      this.state.step = state['STATE_ENCRYPTED_DATA']
-      this.forceUpdate()
+
+      if(this.state.dataIdentityIdEncrypted === ""){
+        alert("Wallet Not Registered in WalliD. Please create at myetherid.io!");
+        console.log("Wallet Not Registered in WalliD. Please create at myetherid.io!");
+
+      }else if(this.state.dataVerifyIdEncrypted === "STOREID_FAIL"){
+        alert("StoreId Fail. Wallet Not Registered. Please register again at myetherid.io!");
+        console.log("StoreId Fail. Wallet Not Registered. Please register again at myetherid.io!");
+
+      }else{
+        this.state.step = state['STATE_ENCRYPTED_DATA']
+        this.forceUpdate()
+      }
+
     });
     // Dummy data
     //  this.state.userWa = "0xE33C85c506F54fa369e7858bd698962fF8443A57"
