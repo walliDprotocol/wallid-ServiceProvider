@@ -1,10 +1,12 @@
 import React from "react";
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import Web3 from 'web3'
+import Switch from "react-switch";
 import WallidContract from '../wallid/wallid.js';
 var CryptoJS = require("crypto-js");
 
 var Spinner = require('react-spinkit');
+const PASSWORD = "20THIS_WILL_USE_METAMASK_SECURITY18"
 
 const state = {
   STATE_LOADING_DATA: 0,
@@ -40,14 +42,17 @@ class ImportForm extends React.Component {
       dataIdentityId: '',
       ContractAddress : '0x787e5fc4773cad0c45f287bf00daca402845b1b7',
       ContractInstance : null,
-      password: '20THIS_WILL_USE_METAMASK_SECURITY18',
-      passwordCheck: '20THIS_WILL_USE_METAMASK_SECURITY18',
+      password: PASSWORD,
+      passwordCheck: PASSWORD,
       userWa: '',
-      idt: ''
+      idt: '',
+      isManualPassword : true,
+      chiperPassword  : PASSWORD
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUsePassword = this.handleUsePassword.bind(this);
 
     if(window.web3){
       console.log('*********************** window.web3 ********************');
@@ -88,6 +93,11 @@ class ImportForm extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+  }
+
+  handleUsePassword(event){
+    console.log('LOG ', this.state.isManualPassword);
+    this.setState({ isManualPassword : event });
   }
 
   handleSubmit(event) {
@@ -198,11 +208,15 @@ class ImportForm extends React.Component {
     var verifyId = {}
 
     try {
-      var bytes =  CryptoJS.AES.decrypt(this.state.dataIdentityIdEncrypted ,this.state.password);
+
+      var password = this.state.isManualPassword ? this.state.chiperPassword : this.state.password;
+
+      console.log('Password to decrypt ', password)
+      var bytes =  CryptoJS.AES.decrypt(this.state.dataIdentityIdEncrypted ,password);
       var ret_1 = bytes.toString(CryptoJS.enc.Utf8);
       identifyId = JSON.parse(ret_1);
 
-      bytes =  CryptoJS.AES.decrypt(this.state.dataVerifyIdEncrypted ,this.state.password);
+      bytes =  CryptoJS.AES.decrypt(this.state.dataVerifyIdEncrypted ,password);
       ret_1 = bytes.toString(CryptoJS.enc.Utf8);
       verifyId = JSON.parse(ret_1);
 
@@ -355,6 +369,41 @@ class ImportForm extends React.Component {
                     class="form-control"
                     />
               </div>
+
+              <div className="disclaimer">
+                <br/>
+                  <div className="form-inline">
+                  <div>
+                    <p><strong> Disclaimer: </strong> Current Metamask version doesn't have the ability to encrypt data with users' private keys. It will be available soon.
+                    Otherwise you can choose to allow MyEtheriD to encrypt your ID data with a default password ( We do not recommend this action)</p> 
+                  </div>
+                  <Switch
+                    onChange={this.handleUsePassword}
+                    checked={this.state.isManualPassword}
+                    id="normal-switch"
+                  />  
+                            
+                </div>
+                <div className="form-inline"  hidden={ !this.state.isManualPassword ?  true : false }>
+                  <label >
+                    Password : 	&nbsp;	&nbsp;
+                  </label>
+
+                  <input
+                    hidden={ !this.state.isManualPassword ?  true : false }
+                    id="chiperPassword"
+                    name="chiperPassword"
+                    onChange={this.handleChange}
+                    className="form-control"
+                    type="password"
+                    placeholder="Insert password to decrypt your data"
+                    required={this.state.isManualPassword ?  true : false }
+                    >
+                  </input>
+                </div>
+
+              </div>
+              <br/>
               <div class="form-group">
                 <input
                   type="submit"
