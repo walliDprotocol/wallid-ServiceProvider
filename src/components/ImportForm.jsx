@@ -15,6 +15,16 @@ const state = {
   STATE_SUBMITED_DATA: 5
 };
 
+window.addEventListener('load', async () => {
+  if (window.ethereum) {
+      try {
+          await window.ethereum.enable();
+      } catch (error) {
+          console.error(error)
+      }
+  }
+})
+
 window.addEventListener('reload', function () {
   if(typeof web3 !== 'undefined'){
     console.log("Using web3 detected from external source like Metamask")
@@ -59,7 +69,6 @@ class ImportForm extends React.Component {
       //   console.log('total items #', data.c[0] );
       // });
       var self = this
-
       window.web3.eth.getAccounts(function(err, accounts){
 
         if (err != null) {
