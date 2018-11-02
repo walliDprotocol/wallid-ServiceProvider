@@ -1,12 +1,12 @@
 import React from "react";
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-import Web3 from 'web3'
+import Web3 from 'web3';
 import Switch from "react-switch";
 import WallidContract from '../wallid/wallid.js';
 var CryptoJS = require("crypto-js");
 
 var Spinner = require('react-spinkit');
-const PASSWORD = "20THIS_WILL_USE_METAMASK_SECURITY18"
+const PASSWORD = "20THIS_WILL_USE_METAMASK_SECURITY18";
 
 const state = {
   STATE_LOADING_DATA: 0,
@@ -16,6 +16,16 @@ const state = {
   STATE_VERIFIED_DATA:  4,
   STATE_SUBMITED_DATA: 5
 };
+
+window.addEventListener('load', async () => {
+  if (window.ethereum) {
+    try {
+      await window.ethereum.enable();
+    } catch (error) {
+      console.error(error)
+    }
+  }
+})
 
 window.addEventListener('reload', function () {
   if(typeof web3 !== 'undefined'){
@@ -64,7 +74,6 @@ class ImportForm extends React.Component {
       //   console.log('total items #', data.c[0] );
       // });
       var self = this
-
       window.web3.eth.getAccounts(function(err, accounts){
 
         if (err != null) {
@@ -208,15 +217,13 @@ class ImportForm extends React.Component {
     var verifyId = {}
 
     try {
-
       var password = this.state.isManualPassword ? this.state.chiperPassword : this.state.password;
-
       console.log('Password to decrypt ', password)
-      var bytes =  CryptoJS.AES.decrypt(this.state.dataIdentityIdEncrypted ,password);
+      var bytes =  CryptoJS.AES.decrypt(this.state.dataIdentityIdEncrypted, password);
       var ret_1 = bytes.toString(CryptoJS.enc.Utf8);
       identifyId = JSON.parse(ret_1);
 
-      bytes =  CryptoJS.AES.decrypt(this.state.dataVerifyIdEncrypted ,password);
+      bytes =  CryptoJS.AES.decrypt(this.state.dataVerifyIdEncrypted, password);
       ret_1 = bytes.toString(CryptoJS.enc.Utf8);
       verifyId = JSON.parse(ret_1);
 
@@ -307,15 +314,19 @@ class ImportForm extends React.Component {
         case state['STATE_LOADING_DATA']:
         return (
           <div>
-            <h2>
-              Step 3 - Loading data from the blockchain
-            </h2>
+            <div className="row">
+              <div className="col-sm-12 col-md-8 headerTextImportId">
+                <h2>
+                  Step 3 - Loading data from the blockchain
+                </h2>
+              </div>
+            </div>
             <br />
             <div align="center">
               <h2>
                 Please wait....
               </h2>
-              <Spinner name="wandering-cubes" color="blue"/>
+              <Spinner name="wandering-cubes" color="orange"/>
             </div>
             <br />
           </div>
@@ -325,9 +336,13 @@ class ImportForm extends React.Component {
           <div>
             <form>
               <div class="form-group">
-                <h2>
-                  We are sorry.
-                </h2>
+                <div className="row">
+                  <div className="col-sm-12 col-md-8 headerTextImportId">
+                    <h2>
+                      We are sorry.
+                    </h2>
+                  </div>
+                </div>
                 <p>Loading data from the blockchain fail!</p>
                 <p>{this.state.errorMsg}</p>
               </div>
@@ -337,99 +352,109 @@ class ImportForm extends React.Component {
         case state['STATE_ENCRYPTED_DATA']:
         return (
           <div>
-            <h2>
-              Step 3 - Decrypt your data Locally
-            </h2>
-            <form onSubmit={this.handleSubmit} >
-              <div class="form-group">
-                <br />
-                <label>
-                  Your encrypted data:
-                </label>
-                <textarea
-                  readOnly
-                  rows="5"
-                  value={this.state.dataIdentityIdEncrypted}
-                  type="text"
-                  name="EncryptedData"
-                  class="form-control"
-                  />
-                </div>
-                <div class="form-group">
-                  <br />
-                  <label>
-                    Your verifyId data encrypted:
-                  </label>
-                  <textarea
-                    readOnly
-                    rows="5"
-                    value={this.state.dataVerifyIdEncrypted}
-                    type="text"
-                    name="EncryptedData"
-                    class="form-control"
-                    />
+            <div className="row">
+              <div className="col-sm-12 col-md-8 headerTextImportId">
+                <h2>
+                  Step 3 - Decrypt your data Locally
+                </h2>
               </div>
-
-              <div className="disclaimer">
-                <br/>
-                  <div className="form-inline">
-                  <div>
-                  <p><strong> Disclaimer: </strong> Current Metamask build doesn't support the features do encrypt data with users' private keys. It will be available as soon.  
- you can encrypt your ID data with a password of your choice <strong>(recommended action)</strong>  Otherwise you can choose to allow MyEtheriD to encrypt your ID data with a default password ( We do not recommend this action)</p> 
+            </div>
+            <div class="row justify-content-start">
+              <div class="col-sm-12 col-md-12">
+                <form onSubmit={this.handleSubmit} >
+                  <div class="form-group">
+                    <br />
+                    <label className="text-white">
+                      Your encrypted data:
+                    </label>
+                    <textarea
+                      readOnly
+                      rows="5"
+                      value={this.state.dataIdentityIdEncrypted}
+                      type="text"
+                      name="EncryptedData"
+                      class="form-control"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <br />
+                      <label className="text-white">
+                        Your verifyId data encrypted:
+                      </label>
+                      <textarea
+                        readOnly
+                        rows="5"
+                        value={this.state.dataVerifyIdEncrypted}
+                        type="text"
+                        name="EncryptedData"
+                        class="form-control"
+                        />
                   </div>
-                  <Switch
-                    onChange={this.handleUsePassword}
-                    checked={this.state.isManualPassword}
-                    id="normal-switch"
-                  />  
-                            
-                </div>
-                <div className="form-inline"  hidden={ !this.state.isManualPassword ?  true : false }>
-                  <label >
-                    Password : 	&nbsp;	&nbsp;
-                  </label>
+                  <div className="disclaimer">
+                    <br/>
+                    <div className="form-inline">
+                      <div>
+                      <p><strong> Disclaimer: </strong> Current Metamask build doesn't support the features do encrypt data with users' private keys. It will be available as soon. you can encrypt your ID data with a password of your choice <strong>(recommended action)</strong>  Otherwise you can choose to allow MyEtheriD to encrypt your ID data with a default password (We do not recommend this action)</p>
+                      </div>
+                      <Switch
+                        onChange={this.handleUsePassword}
+                        checked={this.state.isManualPassword}
+                        id="normal-switch"
+                      />
+                    </div>
+                    <div className="form-inline"  hidden={ !this.state.isManualPassword ?  true : false }>
+                      <label className="text-white">
+                        Password : 	&nbsp;	&nbsp;
+                      </label>
 
-                  <input
-                    style={{width: "300px"}}
-                    hidden={ !this.state.isManualPassword ?  true : false }
-                    id="chiperPassword"
-                    name="chiperPassword"
-                    onChange={this.handleChange}
-                    className="form-control"
-                    type="password"
-                    placeholder="Insert password to decrypt your data"
-                    required={this.state.isManualPassword ?  true : false }
-                    >
-                  </input>
-                </div>
+                      <input
+                        style={{width: "300px"}}
+                        hidden={ !this.state.isManualPassword ?  true : false }
+                        id="chiperPassword"
+                        name="chiperPassword"
+                        onChange={this.handleChange}
+                        className="form-control"
+                        type="password"
+                        placeholder="Insert password to decrypt your data"
+                        required={this.state.isManualPassword ?  true : false }
+                        >
+                      </input>
+                    </div>
 
+                  </div>
+                  <br/>
+                  <div class="form-group">
+                    <input
+                      type="submit"
+                      value="Decrypt ID"
+                      className="btn btn-block btn-lg btnStyle btnNext" />
+                    <p className="text-center">
+                      <a className="text-white" href="https://metamask.io/">
+                        what it means?
+                      </a>
+                    </p>
+                  </div>
+                </form>
               </div>
-              <br/>
-              <div class="form-group">
-                <input
-                  type="submit"
-                  value="Decrypt ID" />
-                <p>
-                  <a href="https://metamask.io/">
-                    what it means?
-                  </a>
-                </p>
-              </div>
-            </form>
+            </div>
           </div>
         );
         case state['STATE_DECRYPTED_DATA']:
         return (
           <div>
-            <h2>
-              Step 4 - Verify your data
-            </h2>
+            <div className="row">
+              <div className="col-sm-12 col-md-8 headerTextImportId">
+                <h2>
+                  Step 4 - Verify your data
+                </h2>
+              </div>
+            </div>
             <div class="row">
               <div class="col-sm">
 
                 <div class="form-group">
                   <br />
-                  <label>
+                  <label className="text-white">
                     Your encrypted data:
                   </label>
                   <textarea
@@ -443,7 +468,7 @@ class ImportForm extends React.Component {
                   <div class="form-group">
                   </div>
                   <br />
-                    <label>
+                    <label className="text-white">
                       Your verifyId data:
                     </label>
                     <textarea
@@ -458,7 +483,7 @@ class ImportForm extends React.Component {
               </div>
               <div class="col-sm">
                 <br />
-                <label>
+                <label className="text-white">
                   Your decrypted data:
                 </label>
                 <BootstrapTable
@@ -466,12 +491,14 @@ class ImportForm extends React.Component {
                   hover
                   condensed
                   pagination
+                  className="text-white"
                   >
                   <TableHeaderColumn
                     dataField="item"
                     width='50%'
+                    className="text-white"
                     isKey={true}>Item</TableHeaderColumn>
-                  <TableHeaderColumn dataField="value" width='50%'>Value</TableHeaderColumn>
+                  <TableHeaderColumn dataField="value" className="text-white" width='50%'>Value</TableHeaderColumn>
                 </BootstrapTable>
               </div>
             </div>
@@ -479,9 +506,10 @@ class ImportForm extends React.Component {
               <div class="form-group">
                 <input
                   type="submit"
-                  value="Verify ID" />
-                <p>
-                  <a href="https://metamask.io/">
+                  value="Verify ID"
+                  className="btn btn-block btn-lg btnStyle btnNext" />
+                <p class="text-center">
+                  <a className="text-white" href="https://metamask.io/">
                     what it means?
                   </a>
                 </p>
@@ -493,9 +521,13 @@ class ImportForm extends React.Component {
         return (
           <div>
               <div class="form-group">
-                <h2>
-                  Step 5 - Submit your application
-                </h2>
+                <div className="row">
+                  <div className="col-sm-12 col-md-8 headerTextImportId">
+                    <h2>
+                      Step 5 - Submit your application
+                    </h2>
+                  </div>
+                </div>
                 <p>
                   Your identity attributes were successfully verified by Wallid.
                 </p>
@@ -507,9 +539,10 @@ class ImportForm extends React.Component {
                 <div class="form-group">
                   <input
                     type="submit"
-                    value="Submit" />
-                  <p>
-                    <a href="https://metamask.io/">
+                    value="Submit"
+                    className="btn btn-block btn-lg btnStyle btnNext" />
+                  <p className="text-center">
+                    <a className="text-white" href="https://metamask.io/">
                       what it means?
                     </a>
                   </p>
@@ -522,9 +555,13 @@ class ImportForm extends React.Component {
             <div>
               <form>
                 <div class="form-group">
-                  <h2>
-                    Thank you
-                  </h2>
+                  <div className="row">
+                    <div className="col-sm-12 col-md-8 headerTextImportId">
+                      <h2>
+                        Thank you
+                      </h2>
+                    </div>
+                  </div>
                   <p>Thank you for applying to a personal credit with CrediBank.</p>
                   <p>We sent you our official proposal to your email.</p>
                   <p>

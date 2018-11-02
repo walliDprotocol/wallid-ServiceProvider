@@ -39,121 +39,143 @@ class CardForm extends React.Component {
       if(this.state.isUserLogged){
       return (
         <div>
-          <h2>
-            Step 2 - Load your identity
-          </h2>
-          <form onSubmit={this.handleSubmit} >
-            <div class="form-group">
-              <br />
-              <label>
-                Select StoreID Provider:
-              </label>
-              <select class="form-control" required>
-                <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
-                <option>CaixaMagica@StoreID</option>
-              </select>
-              <label>
-                Select identity type:
-              </label>
-              <select class="form-control" required>
-                <option disabled="disabled" selected="selected">Select an valid identity</option>
-                <option>Cartão de Cidadão - República Portuguesa</option>
-              </select>
+          <div className="row">
+            <div className="col-sm-12 col-md-8 headerTextImportId">
+              <h2>
+                Step 2 - Load your identity
+              </h2>
             </div>
-            <p>
-              To prove your identity connect with metamask
-            </p>
-            <Link to ='/Import' >
-              <button>
-                Connect with metamask
-              </button>
-            </Link>
-          </form>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-sm-12 col-md-12">
+              <form onSubmit={this.handleSubmit} >
+                <div class="form-group">
+                  <br />
+                  <label className="text-white">
+                    Select StoreID Provider:
+                  </label>
+                  <select class="form-control" required>
+                    <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
+                    <option>CaixaMagica@StoreID</option>
+                  </select>
+                  <label className="text-white">
+                    Select identity type:
+                  </label>
+                  <select class="form-control" required>
+                    <option disabled="disabled" selected="selected">Select an valid identity</option>
+                    <option>Cartão de Cidadão - República Portuguesa</option>
+                  </select>
+                </div>
+                <p>
+                  To prove your identity connect with metamask
+                </p>
+                <Link to ='/Import' className="btn btn-block btn-lg btnStyle btnMetaMask">
+                  Connect with metamask
+                </Link>
+              </form>
+            </div>
+          </div>
         </div>
       );
     }else{
       return (
         <div>
-          <h2>
-            Step 2 - Load your identity
-          </h2>
-          <form onSubmit={this.handleSubmit} >
-            <div class="form-group">
-              <label>
-                Select StoreID Provider:
-              </label>
-              <select class="form-control" required>
-                <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
-                <option>CaixaMagica@StoreID</option>
-              </select>
-              <label>
-                Select identity type:
-              </label>
-              <select class="form-control" required>
-                <option disabled="disabled" selected="selected">Select an valid identity</option>
-                <option>Cartão de Cidadão - República Portuguesa</option>
-              </select>
+          <div className="row">
+            <div className="col-sm-12 col-md-8 headerTextImportId">
+              <h2>
+                Step 2 - Load your identity
+              </h2>
             </div>
-            <p>
-              To prove your identity connect with metamask.
-            </p>
-            <p>
-              User logged out? Please login your account at metamask and try again!!
-            </p>
-            <p>
-              <a href="https://metamask.io/">
-                What is Metamask?
-              </a>
-            </p>
-          </form>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-sm-12 col-md-12">
+              <form onSubmit={this.handleSubmit} >
+                <div class="form-group">
+                  <label className="text-white">
+                    Select StoreID Provider:
+                  </label>
+                  <select class="form-control" required>
+                    <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
+                    <option>CaixaMagica@StoreID</option>
+                  </select>
+                  <label className="text-white">
+                    Select identity type:
+                  </label>
+                  <select class="form-control" required>
+                    <option disabled="disabled" selected="selected">Select an valid identity</option>
+                    <option>Cartão de Cidadão - República Portuguesa</option>
+                  </select>
+                </div>
+                <p>
+                  To prove your identity connect with metamask.
+                </p>
+                <p>
+                  User logged out? Please login your account at metamask and try again!!
+                </p>
+                <p>
+                  <a href="https://metamask.io/">
+                    What is Metamask?
+                  </a>
+                </p>
+              </form>
+            </div>
+          </div>
         </div>
       );
     }
     }else {
       return (
         <div>
-          <h2>
-            Step 2 - Load your identity
-          </h2>
-          <form onSubmit={this.handleSubmit} >
-            <div class="form-group">
-              <label>
-                Select StoreID Provider:
-              </label>
-              <select class="form-control" required>
-                <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
-                <option>CaixaMagica@StoreID</option>
-              </select>
-              <label>
-                Select identity type:
-              </label>
-              <select class="form-control" required>
-                <option disabled="disabled" selected="selected">Select an valid identity</option>
-                <option>Cartão de Cidadão - República Portuguesa</option>
-              </select>
+          <div className="row">
+            <div className="col-sm-12 col-md-8 headerTextImportId">
+              <h2>
+                Step 2 - Load your identity
+              </h2>
             </div>
-            <p>
-              No MetaMask detected.
-            </p>
-            <p>
-              To prove your identity connect with metamask.
-            </p>
-            <p>
-              <a href="https://www.myetherid.io">
-                What is Wallid?
-              </a>
-            </p>
-            <p>
-              <a href="https://metamask.io/">
-                What is Metamask?
-              </a>
-            </p>
-            <p>
-              <a href="https://metamask.io/">
-                Download Metamask?
-              </a>
-            </p>
-          </form>
+          </div>
+          <div class="row justify-content-start">
+            <div class="col-sm-12 col-md-12">
+              <form onSubmit={this.handleSubmit} >
+                <div class="form-group">
+                  <label className="text-white">
+                    Select StoreID Provider:
+                  </label>
+                  <select class="form-control" required>
+                    <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
+                    <option>CaixaMagica@StoreID</option>
+                  </select>
+                  <label className="text-white">
+                    Select identity type:
+                  </label>
+                  <select class="form-control" required>
+                    <option disabled="disabled" selected="selected">Select an valid identity</option>
+                    <option>Cartão de Cidadão - República Portuguesa</option>
+                  </select>
+                </div>
+                <p>
+                  No MetaMask detected.
+                </p>
+                <p>
+                  To prove your identity connect with metamask.
+                </p>
+                <p>
+                  <a href="https://www.myetherid.io">
+                    What is Wallid?
+                  </a>
+                </p>
+                <p>
+                  <a href="https://metamask.io/">
+                    What is Metamask?
+                  </a>
+                </p>
+                <p>
+                  <a href="https://metamask.io/">
+                    Download Metamask?
+                  </a>
+                </p>
+              </form>
+            </div>
+          </div>
         </div>
       );
     }
