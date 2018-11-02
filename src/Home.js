@@ -5,7 +5,7 @@ import CreditForm from './components/CreditForm';
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <h2>Personal Credit application</h2>
           <br />
           <p>Welcome to CrediBank automatic Personal Credit application.</p>
