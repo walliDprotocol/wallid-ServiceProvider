@@ -56,7 +56,7 @@ class CreditForm extends React.Component {
                 </select>
               </div>
               <div>
-                <Link to ='/CardSelect' className="btn btn-block btn-lg btnStyle btnNext">
+                <Link to ='/Import' className="btn btn-block btn-lg btnStyle btnNext">
                   Next Step
                 </Link>
               </div>

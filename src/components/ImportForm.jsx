@@ -3,18 +3,20 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import Web3 from 'web3';
 import Switch from "react-switch";
 import WallidContract from '../wallid/wallid.js';
+import { Link } from 'react-router-dom';
 var CryptoJS = require("crypto-js");
 
 var Spinner = require('react-spinkit');
 const PASSWORD = "20THIS_WILL_USE_METAMASK_SECURITY18";
 
 const state = {
-  STATE_LOADING_DATA: 0,
-  STATE_LOADING_DATA_FAIL: 1,
-  STATE_ENCRYPTED_DATA: 2,
-  STATE_DECRYPTED_DATA: 3,
-  STATE_VERIFIED_DATA:  4,
-  STATE_SUBMITED_DATA: 5
+  STATE_CARD_SELECT: 0,
+  STATE_LOADING_DATA: 1,
+  STATE_LOADING_DATA_FAIL: 2,
+  STATE_ENCRYPTED_DATA: 3,
+  STATE_DECRYPTED_DATA: 4,
+  STATE_VERIFIED_DATA:  5,
+  STATE_SUBMITED_DATA: 6
 };
 
 window.addEventListener('load', async () => {
@@ -42,7 +44,8 @@ class ImportForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: state['STATE_LOADING_DATA'],
+      step: state['STATE_CARD_SELECT'],
+      isUserLogged: 0,
       errorMsg: '',
       data: '',
       dataId: '',
@@ -61,6 +64,7 @@ class ImportForm extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeIdt = this.handleChangeIdt.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUsePassword = this.handleUsePassword.bind(this);
 
@@ -78,18 +82,20 @@ class ImportForm extends React.Component {
 
         if (err != null) {
           console.error("An error occurred: "+err);
+          self.state.isUserLogged = 0;
         }
         else if (accounts.length === 0) {
           console.log("User is not logged in to MetaMask");
+          self.state.isUserLogged = 0;
+          alert('User logged out? Please login your account at metamask and refresh to try again!')
         }
         else {
           console.log("User is logged in to MetaMask");
           console.log(accounts[0]);
           self.state.userWa = accounts[0];
+          self.state.isUserLogged = 1;
         }
       });
-
-      this.getInfoCrypted();
 
     }else {
       alert('No web3? You should consider trying MetaMask!')
@@ -99,6 +105,15 @@ class ImportForm extends React.Component {
   handleChange(event) {
     console.log("handleChange");
     console.log(event.target.name + event.target.value);
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  handleChangeIdt(event) {
+    console.log("handleChangeIdt");
+    console.log(event.target.name);
+    console.log(event.target.value);
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -121,6 +136,21 @@ class ImportForm extends React.Component {
       case state['STATE_VERIFIED_DATA']:
         this.state.step = state['STATE_SUBMITED_DATA']
         this.forceUpdate()
+      break;
+      case state['STATE_CARD_SELECT']:
+
+      if(this.state.isUserLogged == 0){
+        alert('User logged out? Please login your account at metamask and refresh to try again!')
+      }else{
+        if(this.state.idt!=""){
+          this.state.step = state['STATE_LOADING_DATA']
+          this.forceUpdate()
+          this.getInfoCrypted();
+        }else{
+          alert("Please select your Identity Type\n\n")
+        }
+      }
+
       break;
       default:
       break;
@@ -259,7 +289,8 @@ class ImportForm extends React.Component {
   getInfoCrypted()
   {
     console.log("******************** GetInfoCrypted *******************************");
-    this.state.ContractInstance.getIdtDataVerified( "CC_PT", "123456789", (err, data) => {
+    console.log(this.state.idt);
+    this.state.ContractInstance.getIdtDataVerified( this.state.idt, "123456789", (err, data) => {
       if(data){
         console.log('get Info Result ', data);
       }else{
@@ -311,6 +342,53 @@ class ImportForm extends React.Component {
   render() {
     if(window.web3){
       switch (this.state.step) {
+        case state['STATE_CARD_SELECT']:
+        return (
+          <div>
+            <div className="row">
+              <div className="col-sm-12 col-md-8 headerTextImportId">
+                <h2>
+                  Step 2 - Load your identity
+                </h2>
+              </div>
+            </div>
+            <form onSubmit={this.handleSubmit} >
+              <div class="form-group">
+                <br />
+                <label className="text-white">
+                  Select StoreID Provider:
+                </label>
+                <select class="form-control" required>
+                  <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
+                  <option>CaixaMagica@StoreID</option>
+                </select>
+                <label className="text-white">
+                  Select identity type:
+                </label>
+                <select class="form-control"
+                  required
+                  name="idt"
+                  onChange={this.handleChangeIdt}>
+                  <option disabled="disabled" selected="selected">Select an valid identity</option>
+                  <option value="CC_PT">Cartão de Cidadão - República Portuguesa</option>
+                  <option value="CC_PT_TST">Cartão de Cidadão TST - República Portuguesa</option>
+                </select>
+                <p>
+                  To prove your identity connect with metamask
+                </p>
+                <input
+                  type="submit"
+                  value="Connect with metamask"
+                  className="btn btn-block btn-lg btnStyle btnMetaMask" />
+                <p className="text-center">
+                  <a className="text-white" href="https://metamask.io/">
+                    what it means?
+                  </a>
+                </p>
+              </div>
+            </form>
+          </div>
+        );
         case state['STATE_LOADING_DATA']:
         return (
           <div>
@@ -394,7 +472,7 @@ class ImportForm extends React.Component {
                     <br/>
                     <div className="form-inline">
                       <div>
-                      <p><strong> Disclaimer: </strong> Current Metamask build doesn't support the features do encrypt data with users' private keys. It will be available as soon. you can encrypt your ID data with a password of your choice <strong>(recommended action)</strong>  Otherwise you can choose to allow MyEtheriD to encrypt your ID data with a default password (We do not recommend this action)</p>
+                      <p><strong> Disclaimer: </strong> Current Metamask build doesn't support the features do encrypt data with users'private keys. It will be available as soon. you can encrypt your ID data with a password of your choice <strong>(recommended action)</strong>  Otherwise you can choose to allow MyEtheriD to encrypt your ID data with a default password (We do not recommend this action)</p>
                       </div>
                       <Switch
                         onChange={this.handleUsePassword}
