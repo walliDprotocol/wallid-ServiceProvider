@@ -348,20 +348,13 @@ class ImportForm extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>
-                  Step 2 - Load your identity
+                  Step 1 - Select a Certified Identity
                 </h2>
               </div>
             </div>
             <form onSubmit={this.handleSubmit} >
               <div class="form-group">
                 <br />
-                <label className="text-white">
-                  Select StoreID Provider:
-                </label>
-                <select class="form-control" required>
-                  <option disabled="disabled" selected="selected">Select an valid StoreID Provider</option>
-                  <option>CaixaMagica@StoreID</option>
-                </select>
                 <label className="text-white">
                   Select identity type:
                 </label>
@@ -378,7 +371,7 @@ class ImportForm extends React.Component {
                 </p>
                 <input
                   type="submit"
-                  value="Connect with metamask"
+                  value="Prove your Identity"
                   className="btn btn-block btn-lg btnStyle btnMetaMask" />
                 <p className="text-center">
                   <a className="text-white" href="https://metamask.io/">
@@ -395,7 +388,7 @@ class ImportForm extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>
-                  Step 3 - Loading data from the blockchain
+                  Step 2 - Loading data from the blockchain
                 </h2>
               </div>
             </div>
@@ -433,7 +426,7 @@ class ImportForm extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>
-                  Step 3 - Decrypt your data Locally
+                  Step 2 - Decrypt your data Locally
                 </h2>
               </div>
             </div>
@@ -523,7 +516,7 @@ class ImportForm extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>
-                  Step 4 - Verify your data
+                  Step 3 - Verify your data
                 </h2>
               </div>
             </div>
@@ -602,7 +595,7 @@ class ImportForm extends React.Component {
                 <div className="row">
                   <div className="col-sm-12 col-md-8 headerTextImportId">
                     <h2>
-                      Step 5 - Submit your application
+                      Step 4 - Submit your application
                     </h2>
                   </div>
                 </div>

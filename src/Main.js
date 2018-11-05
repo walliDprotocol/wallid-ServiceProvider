@@ -3,7 +3,6 @@ import { HashRouter } from 'react-router-dom'
 import { Route } from 'react-router'
 import { NavLink } from 'react-router-dom'
 
-import Home from './Home';
 import Footer from './Footer';
 import Import from './Import';
 import KycVerified from './KycVerified';
@@ -26,11 +25,6 @@ class Main extends Component {
               <div className="collapse navbar-collapse" id="navbarCollapse">
                   <ul className="navbar-nav ml-auto">
                       <li className="nav-item active">
-                          <a className="nav-link" href="https://wallid.io">Solution
-                              <span className="sr-only">(current)</span>
-                          </a>
-                      </li>
-                      <li className="nav-item active">
                           <a className="nav-link" href="https://wallid.io/importid.html" target="_blank">ImportiD</a>
                       </li>
                       <li className="nav-item active">
@@ -49,8 +43,7 @@ class Main extends Component {
           </div>
           </nav>
           <div className="content jumbotron mb-0 sectionOneImportId bg-green-gradient-menu pb-0">
-          <Route exact path="/" component={Home}/>
-          <Route path="/Import" component={Import}/>
+          <Route exact path="/" component={Import}/>
           <Route path="/KycVerified" component={KycVerified}/>
           </div>
           <Footer />
