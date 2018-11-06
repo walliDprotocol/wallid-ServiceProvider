@@ -25,7 +25,10 @@ class Main extends Component {
               <div className="collapse navbar-collapse" id="navbarCollapse">
                   <ul className="navbar-nav ml-auto">
                       <li className="nav-item active">
-                          <a className="nav-link" href="https://wallid.io/importid.html" target="_blank">ImportiD</a>
+                          <a className="nav-link" href="https://wallid.io/identityfortesting.html" target="_self">Test our Demo</a>
+                      </li>
+                      <li className="nav-item active">
+                          <a className="nav-link" href="https://wallid.io/importid.html" target="_self">ImportiD</a>
                       </li>
                       <li className="nav-item active">
                           <a className="nav-link" href="https://myetherid.io" target="_blank">MyEtheriD</a>
