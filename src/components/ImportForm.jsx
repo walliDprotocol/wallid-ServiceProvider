@@ -11,12 +11,13 @@ const PASSWORD = "20THIS_WILL_USE_METAMASK_SECURITY18";
 
 const state = {
   STATE_CARD_SELECT: 0,
-  STATE_LOADING_DATA: 1,
-  STATE_LOADING_DATA_FAIL: 2,
-  STATE_ENCRYPTED_DATA: 3,
-  STATE_DECRYPTED_DATA: 4,
-  STATE_VERIFIED_DATA:  5,
-  STATE_SUBMITED_DATA: 6
+  STATE_LOADING_OPID: 1,
+  STATE_LOADING_DATA: 2,
+  STATE_LOADING_DATA_FAIL: 3,
+  STATE_ENCRYPTED_DATA: 4,
+  STATE_DECRYPTED_DATA: 5,
+  STATE_VERIFIED_DATA:  6,
+  STATE_SUBMITED_DATA: 7
 };
 
 window.addEventListener('load', async () => {
@@ -59,6 +60,7 @@ class ImportForm extends React.Component {
       passwordCheck: PASSWORD,
       userWa: '',
       idt: '',
+      opid: '',
       isManualPassword : true,
       chiperPassword  : PASSWORD
     };
@@ -138,20 +140,19 @@ class ImportForm extends React.Component {
         this.forceUpdate()
       break;
       case state['STATE_CARD_SELECT']:
-
-      if(this.state.isUserLogged == 0){
-        alert('User logged out? Please login your account at metamask and refresh to try again!')
-      }else{
-        if(this.state.idt!=""){
-          this.state.step = state['STATE_LOADING_DATA']
-          this.forceUpdate()
-          this.getInfoCrypted();
+        if(this.state.isUserLogged == 0){
+          alert('User logged out? Please login your account at metamask and refresh to try again!')
         }else{
-          alert("Please select your Identity Type\n\n")
+          if(this.state.idt!=""){
+            this.state.step = state['STATE_LOADING_OPID']
+            this.forceUpdate()
+            this.getOpID();
+          }else{
+            alert("Please select your Identity Type\n\n")
+          }
         }
-      }
-
       break;
+
       default:
       break;
     }
@@ -172,26 +173,24 @@ class ImportForm extends React.Component {
   }
 
   handleSucess(response) {
-    console.log("handleSucess = ", this.state.step);
-    console.log("response = ",response);
+    console.log("handleSucess step = ",this.state.step);
 
     switch (this.state.step) {
 
-      case state['STATE_ENCRYPTED_DATA']:
-      break;
-
       case state['STATE_DECRYPTED_DATA']:
+        console.log("STATE_DECRYPTED_DATA");
         this.state.step = state['STATE_VERIFIED_DATA']
         this.forceUpdate()
       break;
 
-      case state['STATE_VERIFIED_DATA']:
-      break;
+      case state['STATE_LOADING_DATA']:
+        console.log("STATE_LOADING_DATA");
+        this.getInfoCrypted();
+      break
 
       default:
       break;
     }
-
     return;
   }
 
@@ -285,12 +284,47 @@ class ImportForm extends React.Component {
       alert("Decrypt fail! Try Again!")
     }
   }
+  getOpID()
+  {
+    console.log("******************** getOpID *******************************");
+    var kycProviderUrl = "https://wallid.io/kyc/api/v1/data";
+    console.log(this.state.idt);
+    var datakyc = JSON.parse('{"wa":"","idt":"","idtName":""}');
+
+    datakyc.wa = this.state.userWa;
+    datakyc.idt = this.state.idt;
+
+    console.log(JSON.stringify(datakyc));
+
+    console.log("call kycProvider: " + kycProviderUrl);
+      fetch(kycProviderUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datakyc)
+      })
+      .then(response => this.handleErrors(response))
+      .then(response => response.json())
+      .then(data => this.setState({ opid: data.data , step: state['STATE_LOADING_DATA']}))
+      .then(response => this.handleSucess(response) )
+      .catch(error => {
+        console.log(error)
+        alert("getOpID Service Fail")
+      }
+    );
+
+  }
 
   getInfoCrypted()
   {
     console.log("******************** GetInfoCrypted *******************************");
-    console.log(this.state.idt);
-    this.state.ContractInstance.getIdtDataVerified( this.state.idt, "123456789", (err, data) => {
+    console.log("idt = " + this.state.idt);
+    console.log("opid = " + this.state.opid);
+    var opid = this.state.opid;
+    var opidString = opid.toString();
+    console.log("opidString = " + opidString);
+    this.state.ContractInstance.getIdtDataVerified( this.state.idt, opidString, (err, data) => {
       if(data){
         console.log('get Info Result ', data);
       }else{
@@ -304,30 +338,39 @@ class ImportForm extends React.Component {
       console.log(data["address"]);
       console.log(data["args"]);
       var wallid = data["args"];
-      console.log("IdentityId = " + wallid["identityId"]);
-      console.log("Idt = " + this.hex2a(wallid["idt"]));
-      console.log("VeridyId = " + wallid["veridyId"]);
+      console.log("************************************************************");
+      console.log("EVENT EventDataId");
+      console.log("opid = " + this.state.opid);
+      console.log("opid event= " + wallid["opid"]);
+      console.log("************************************************************");
+      if(Number(wallid["opid"]) === Number(this.state.opid)){
+          console.log("IdentityId = " + wallid["identityId"]);
+          console.log("Idt = " + this.hex2a(wallid["idt"]));
+          console.log("VeridyId = " + wallid["veridyId"]);
 
-      console.log("IdentityId hexa = " + this.hex2a(wallid["identityId"]));
-      console.log("Idt hexa = " + this.hex2a(wallid["idt"]));
-      console.log("VeridyId hexa = " + this.hex2a(wallid["veridyId"]));
+          console.log("IdentityId hexa = " + this.hex2a(wallid["identityId"]));
+          console.log("Idt hexa = " + this.hex2a(wallid["idt"]));
+          console.log("VeridyId hexa = " + this.hex2a(wallid["veridyId"]));
 
-      this.state.dataIdentityIdEncrypted = this.hex2a(wallid["identityId"]);
-      this.state.idt = this.hex2a(wallid["idt"]);
-      this.state.dataVerifyIdEncrypted = this.hex2a(wallid["veridyId"]);
+          this.state.dataIdentityIdEncrypted = this.hex2a(wallid["identityId"]);
+          this.state.idt = this.hex2a(wallid["idt"]);
+          this.state.dataVerifyIdEncrypted = this.hex2a(wallid["veridyId"]);
 
-      if(this.state.dataIdentityIdEncrypted === ""){
-        this.state.errorMsg = "Wallet Not Registered in WalliD. Please create at myetherid.io!";
-        console.log("Wallet Not Registered in WalliD. Please create at myetherid.io!");
-        this.state.step = state['STATE_LOADING_DATA_FAIL'];
-      }else if(this.state.dataVerifyIdEncrypted === "STOREID_FAIL"){
-        this.state.errorMsg = "StoreId Fail. Wallet Not Registered. Please register again at myetherid.io!";
-        console.log("StoreId Fail. Wallet Not Registered. Please register again at myetherid.io!");
-        this.state.step = state['STATE_LOADING_DATA_FAIL'];
-      }else{
-        this.state.step = state['STATE_ENCRYPTED_DATA']
+          if(this.state.dataIdentityIdEncrypted === ""){
+            this.state.errorMsg = "Wallet Not Registered in WalliD. Please create at myetherid.io!";
+            console.log("Wallet Not Registered in WalliD. Please create at myetherid.io!");
+            this.state.step = state['STATE_LOADING_DATA_FAIL'];
+          }else if(this.state.dataVerifyIdEncrypted === "STOREID_FAIL"){
+            this.state.errorMsg = "StoreId Fail. Wallet Not Registered. Please register again at myetherid.io!";
+            console.log("StoreId Fail. Wallet Not Registered. Please register again at myetherid.io!");
+            this.state.step = state['STATE_LOADING_DATA_FAIL'];
+          }else{
+            this.state.step = state['STATE_ENCRYPTED_DATA']
+          }
+          this.forceUpdate()
+      } else {
+        console.log("EVENT EventDataId another OPID");
       }
-      this.forceUpdate()
 
     });
     // Dummy data
@@ -382,6 +425,7 @@ class ImportForm extends React.Component {
             </form>
           </div>
         );
+        case state['STATE_LOADING_OPID']:
         case state['STATE_LOADING_DATA']:
         return (
           <div>
@@ -397,6 +441,7 @@ class ImportForm extends React.Component {
               <h2>
                 Please wait....
               </h2>
+              <p>Operation ID: {this.state.opid}</p>
               <Spinner name="wandering-cubes" color="orange"/>
             </div>
             <br />
@@ -426,7 +471,7 @@ class ImportForm extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>
-                  Step 2 - Decrypt your data Locally
+                  Step 3 - Decrypt your data Locally
                 </h2>
               </div>
             </div>
@@ -516,7 +561,7 @@ class ImportForm extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>
-                  Step 3 - Verify your data
+                  Step 4 - Verify your data
                 </h2>
               </div>
             </div>
@@ -595,7 +640,7 @@ class ImportForm extends React.Component {
                 <div className="row">
                   <div className="col-sm-12 col-md-8 headerTextImportId">
                     <h2>
-                      Step 4 - Submit your application
+                      Step 5 - Submit your application
                     </h2>
                   </div>
                 </div>
