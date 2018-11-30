@@ -381,7 +381,7 @@ class ImportForm extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>
-                  Step 1 - Select a Certified Identity
+                  Step 2 - Select a Certified Identity
                 </h2>
               </div>
             </div>
@@ -422,7 +422,7 @@ class ImportForm extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>
-                  Step 2 - Loading data from the blockchain
+                  Step 3 - Loading data from the blockchain
                 </h2>
               </div>
             </div>
@@ -461,7 +461,7 @@ class ImportForm extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>
-                  Step 3 - Decrypt your data Locally
+                  Step 4 - Decrypt your data Locally
                 </h2>
               </div>
             </div>
@@ -551,7 +551,7 @@ class ImportForm extends React.Component {
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>
-                  Step 4 - Verify your data
+                  Step 5 - Verify your data
                 </h2>
               </div>
             </div>
@@ -630,7 +630,7 @@ class ImportForm extends React.Component {
                 <div className="row">
                   <div className="col-sm-12 col-md-8 headerTextImportId">
                     <h2>
-                      Step 5 - Submit your application
+                      Step 6 - Submit your application
                     </h2>
                   </div>
                 </div>

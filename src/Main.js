@@ -3,10 +3,9 @@ import { HashRouter } from 'react-router-dom'
 import { Route } from 'react-router'
 import { NavLink } from 'react-router-dom'
 
-import Footer from './Footer';
+import Home from './Home';
 import Import from './Import';
-import KycVerified from './KycVerified';
-
+import Footer from './Footer';
 
 class Main extends Component {
   render() {
@@ -46,8 +45,8 @@ class Main extends Component {
           </div>
           </nav>
           <div className="content jumbotron mb-0 sectionOneImportId bg-green-gradient-menu pb-0">
-          <Route exact path="/" component={Import}/>
-          <Route path="/KycVerified" component={KycVerified}/>
+          <Route exact path="/" component={Home}/>
+          <Route path="/Import" component={Import}/>
           </div>
           <Footer />
         </div>
