@@ -2,9 +2,10 @@ import React from "react";
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import Web3 from 'web3';
 import Switch from "react-switch";
-import WallidContract from '../wallid/wallid.js';
-import { Link } from 'react-router-dom';
-import * as WallidConst from '../wallid/const.js';
+import WallidContract from '../../wallid/wallid.js';
+import * as WallidConst from '../../wallid/const.js';
+
+import store from "../../js/store/index";
 
 var CryptoJS = require("crypto-js");
 
@@ -63,7 +64,8 @@ class ImportForm extends React.Component {
       idt: '',
       opid: '',
       isManualPassword : true,
-      chiperPassword  : WallidConst.DEFAULT_PASSWORD
+      chiperPassword  : WallidConst.DEFAULT_PASSWORD,
+      yourPurpose  : store.getState().yourPurpose
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -104,6 +106,17 @@ class ImportForm extends React.Component {
       alert('No web3? You should consider trying MetaMask!')
     }
   }
+  componentWillMount() {
+      store.subscribe(() => {
+          // When state will be updated(in our case, when items will be fetched),
+          // we will update local component state and force component to rerender
+          // with new data.
+
+          this.setState({
+              yourPurpose: store.getState().yourPurpose,
+          });
+      });
+  };
 
   handleChange(event) {
     console.log("handleChange");
@@ -141,10 +154,10 @@ class ImportForm extends React.Component {
         this.forceUpdate()
       break;
       case state['STATE_CARD_SELECT']:
-        if(this.state.isUserLogged == 0){
+        if(this.state.isUserLogged === 0){
           alert('User logged out? Please login your account at metamask and refresh to try again!')
         }else{
-          if(this.state.idt!=""){
+          if(this.state.idt !== ""){
             this.state.step = state['STATE_LOADING_OPID']
             this.forceUpdate()
             this.getOpID();
@@ -368,7 +381,6 @@ class ImportForm extends React.Component {
       } else {
         console.log("EVENT EventDataId another OPID");
       }
-
     });
   }
 
@@ -378,6 +390,13 @@ class ImportForm extends React.Component {
         case state['STATE_CARD_SELECT']:
         return (
           <div>
+            <div className="row">
+              <div className="col-sm-12 col-md-8 headerTextImportId">
+                <h2>
+                  Your purpose: {this.state.yourPurpose}
+                </h2>
+              </div>
+            </div>
             <div className="row">
               <div className="col-sm-12 col-md-8 headerTextImportId">
                 <h2>

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { HashRouter } from 'react-router-dom'
 import { Route } from 'react-router'
-import { NavLink } from 'react-router-dom'
 
 import Home from './Home';
-import Import from './Import';
 import Footer from './Footer';
 
 class Main extends Component {
@@ -46,7 +44,6 @@ class Main extends Component {
           </nav>
           <div className="content jumbotron mb-0 sectionOneImportId bg-green-gradient-menu pb-0">
           <Route exact path="/" component={Home}/>
-          <Route path="/Import" component={Import}/>
           </div>
           <Footer />
         </div>
