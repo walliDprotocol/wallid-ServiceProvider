@@ -1,70 +1,63 @@
-import React from 'react';
-import {
-  Link
-} from 'react-router-dom';
+import React from "react";
+
+import PurposeSelect from "./kyc/PurposeSelect";
+import IdentitySelect from "./kyc/IdentitySelect";
+import LoadOPID from "./kyc/LoadOPID";
+import LoadDataID from "./kyc/LoadDataID";
+import DecryptData from "./kyc/DecryptData";
+import VerifyData from "./kyc/VerifyData";
+import SubmitData from "./kyc/SubmitData";
+import Finish from "./kyc/Finish";
+
+import store from "../js/store/index";
+
+import { CREDIT_STATE } from "../js/constants/action-types";
 
 class CreditForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      creditState: store.getState().creditState
+    };
+  }
+
+  componentWillMount() {
+    store.subscribe(() => {
+      this.setState({
+        creditState: store.getState().creditState
+      });
+    });
+  }
 
   render() {
-    return (
-      <div>
-        <div className="row">
-          <div className="col-sm-12 col-md-8 headerTextImportId">
-            <h2>
-              Step 1 - Funding purpose and values:
-            </h2>
-          </div>
-        </div>
-        <div class="row justify-content-start">
-          <div class="col-sm-12 col-md-12">
-            <form onSubmit={this.handleSubmit}>
-              <div class="form-group">
-                <br />
-                <label className="text-white">
-                  Select the purpose:
-                </label>
-                <select class="form-control" required>
-                  <option value="NewCar">
-                    New Car
-                  </option>
-                  <option value="NewHouse">
-                    New House
-                  </option>
-                  <option value="Construction">
-                    University degree
-                  </option>
-                  <option value="Private">Holidays</option>
-                </select>
-                <label className="text-white">
-                  How much funding do you need : (total in euros)
-                </label>
-                <input
-                  type="text"
-                  name="walletAddress"
-                  onChange={this.handleChange}
-                  class="form-control"
-                  required/>
-                <label className="text-white">
-                  How often would you like to receive payment tranches? monthly, every 3 month, every 6 month, once a year
-                </label>
-                <select class="form-control" required>
-                  <option disabled="disabled" selected="selected">Select how often you like to receive</option>
-                  <option>monthly</option>
-                  <option>every 3 month</option>
-                  <option>every 6 month</option>
-                  <option>once a year</option>
-                </select>
-              </div>
-              <div>
-                <Link to ='/Import' className="btn btn-block btn-lg btnStyle btnNext">
-                  Next Step
-                </Link>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    );
+    switch (this.state.creditState) {
+      case CREDIT_STATE["CREDIT_STATE_PURPOSE_SELECT"]:
+        return <PurposeSelect />;
+
+      case CREDIT_STATE["CREDIT_STATE_IDENTITY_SELECT"]:
+        return <IdentitySelect />;
+
+      case CREDIT_STATE["CREDIT_STATE_LOAD_OPID"]:
+        return <LoadOPID />;
+
+      case CREDIT_STATE["CREDIT_STATE_LOAD_DATAID"]:
+        return <LoadDataID />;
+
+      case CREDIT_STATE["CREDIT_STATE_DECRYPT_DATA"]:
+        return <DecryptData />;
+
+      case CREDIT_STATE["CREDIT_STATE_VERIFY_DATA"]:
+        return <VerifyData />;
+
+      case CREDIT_STATE["CREDIT_STATE_SUBMIT_DATA"]:
+        return <SubmitData />;
+
+      case CREDIT_STATE["CREDIT_STATE_FINISH"]:
+        return <Finish />;
+
+      default:
+        return <PurposeSelect />;
+    }
   }
 }
 
