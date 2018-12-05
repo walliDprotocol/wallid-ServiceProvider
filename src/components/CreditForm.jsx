@@ -1,10 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import PurposeForm from './kyc/PurposeForm';
-import ImportForm from './kyc/ImportForm';
+import PurposeSelect from "./kyc/PurposeSelect";
+import IdentitySelect from "./kyc/IdentitySelect";
+import LoadOPID from "./kyc/LoadOPID";
+import LoadDataID from "./kyc/LoadDataID";
+import DecryptData from "./kyc/DecryptData";
+import VerifyData from "./kyc/VerifyData";
+import SubmitData from "./kyc/SubmitData";
+import Finish from "./kyc/Finish";
 
 import store from "../js/store/index";
-import { setYourPurpose } from "../js/actions/index";
 
 import { CREDIT_STATE } from "../js/constants/action-types";
 
@@ -12,58 +17,46 @@ class CreditForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      yourPurpose: store.getState().yourPurpose,
       creditState: store.getState().creditState
-  }
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeIdt = this.handleChangeIdt.bind(this);
+    };
   }
 
   componentWillMount() {
-      store.subscribe(() => {
-          // When state will be updated(in our case, when items will be fetched),
-          // we will update local component state and force component to rerender
-          // with new data.
-
-          this.setState({
-              yourPurpose: store.getState().yourPurpose,
-              creditState: store.getState().creditState,
-          });
+    store.subscribe(() => {
+      this.setState({
+        creditState: store.getState().creditState
       });
-  };
-
-  handleSubmit(event) {
-    console.log("handleSubmit" + event);
-    event.preventDefault();
-  }
-
-  handleChangeIdt(event) {
-    console.log("handleChangeIdt");
-    console.log(event.target.name);
-    console.log(event.target.value);
-    this.setState({
-      [event.target.name]: event.target.value
     });
-    store.dispatch(setYourPurpose(event.target.value))
   }
 
   render() {
     switch (this.state.creditState) {
-      case CREDIT_STATE['CREDIT_STATE_PURPOSE']:
-      return (
-        <PurposeForm />
-      );
+      case CREDIT_STATE["CREDIT_STATE_PURPOSE_SELECT"]:
+        return <PurposeSelect />;
 
-      case CREDIT_STATE['CREDIT_STATE_SELECT']:
-      return (
-        <ImportForm />
-      );
+      case CREDIT_STATE["CREDIT_STATE_IDENTITY_SELECT"]:
+        return <IdentitySelect />;
+
+      case CREDIT_STATE["CREDIT_STATE_LOAD_OPID"]:
+        return <LoadOPID />;
+
+      case CREDIT_STATE["CREDIT_STATE_LOAD_DATAID"]:
+        return <LoadDataID />;
+
+      case CREDIT_STATE["CREDIT_STATE_DECRYPT_DATA"]:
+        return <DecryptData />;
+
+      case CREDIT_STATE["CREDIT_STATE_VERIFY_DATA"]:
+        return <VerifyData />;
+
+      case CREDIT_STATE["CREDIT_STATE_SUBMIT_DATA"]:
+        return <SubmitData />;
+
+      case CREDIT_STATE["CREDIT_STATE_FINISH"]:
+        return <Finish />;
 
       default:
-      return (
-        <PurposeForm />
-      );
+        return <PurposeSelect />;
     }
   }
 }
