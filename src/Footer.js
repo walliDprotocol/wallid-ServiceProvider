@@ -2,88 +2,39 @@ import React from 'react';
 
 function Footer(/*props*/) {
   return (
-    <footer className="p-5 bg-black">
-    <div class="text-center">
-        <img src={require('./img/wallid-logo.png')} class="img-fluid footerImg" alt="Logo Wallid"/>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-3 mt-5">
-            <p>Join the conversation</p>
-            <div class="footerContent row">
-                <div class="col-3">
-                    <div>
-                        <a href="https://github.com/walliDprotocol" target="_blank">
-                            <img src={require('./img/github.png')} class="img-fluid socialMedia mt-2" alt="Github"/>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div>
-                        <a href="" target="_blank">
-                            <img src={require('./img/twitter.png')} class="img-fluid socialMedia mt-2" alt="Twitter"/>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div>
-                        <a href="" target="_blank">
-                            <img src={require('./img/medium.png')} class="img-fluid socialMedia mt-2" alt="Medium"/>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div>
-                        <a href="" target="_blank">
-                            <img src={require('./img/telegram.png')} class="img-fluid socialMedia mt-2" alt="Telegram"/>
-                        </a>
-                    </div>
-                </div>
+    <footer className="bg-navy">
+    <div class="row justify-content-center">
+        <div class="col-10">
+          <div className="row">
+            <div className="col-3">
+                <img src={require('./img/credibank-white.png')} className="img-fluid" alt="Logo Wallid"/>
             </div>
+            <div className="col-9">
+              <div className="row">
+                <div className="col-3">
+                  <p className="footer-menu">Pricing</p>
+                  <p className="footer-menu">Security</p>
+                  <p className="footer-menu">Promoters</p>
+                  <p className="footer-menu">Distance Bank</p>
+                </div>
+                <div className="col-3 offset-1">
+                  <p className="footer-menu">Legal information</p>
+                  <p className="footer-menu">Credit agreements</p>
+                  <p className="footer-menu">Main doc. information</p>
+                  <p className="footer-menu">Corporative web</p>
+                </div>
+                <div className="col-3 offset-2">
+                  <p className="footer-menu">Privacy</p>
+                  <p className="footer-menu">About credibank</p>
+                  <p className="footer-menu">Glossary</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 mt-5">
-            <p>Stay updated</p>
-            <div class="input-group footerContent mb-3 mt-3">
-                <input type="text" class="form-control input-form" placeholder="name@email.com" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-                <div class="input-group-append">
-                <button class="btn btn-block btn-lg btnStyle" type="button">Subscribe</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-12 col-lg-5 mt-5">
-            <p>More about WalliD</p>
-            <div class="row footerContent mt-3">
-                <div class="col-sm-12 col-md-3 col-lg-3 mt-2">
-                    <div>
-                        <a href="https://wallid.io/">Solution
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-3 col-lg-3 mt-2">
-                    <div>
-                        <a href="https://wallid.io/importid.html" target="_blank">
-                            ImportiD
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-3 col-lg-3 mt-2">
-                    <div>
-                        <a href="https://myetherid.io" target="_blank">
-                            MyEtheriD
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-3 col-lg-3 mt-2">
-                    <div>
-                        <a href="javascript:window.scrollTo(0,document.body.scrollHeight);">
-                            Talk to us
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div className="col-12">
+          <hr></hr>
+          <p className="copyright">CrediBank ©2018 All rights reserved</p>
         </div>
     </div>
     </footer>
