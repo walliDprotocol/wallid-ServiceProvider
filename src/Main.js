@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { HashRouter } from 'react-router-dom'
-import { Route } from 'react-router'
+import { HashRouter } from 'react-router-dom';
+import { Route } from 'react-router';
 
 import Header from './Header';
 import Home from './Home';
+import Apply from './Apply';
 import Footer from './Footer';
 
 class Main extends Component {
@@ -16,6 +17,7 @@ class Main extends Component {
               <div className="col-9">
                   <div className="content">
                       <Route exact path="/" component={Home}/>
+                      <Route exact path="/apply" component={Apply}/>
                   </div>
               </div>
           </div>

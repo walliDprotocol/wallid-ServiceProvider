@@ -4,7 +4,7 @@ function Footer(/*props*/) {
   return (
     <footer className="bg-navy">
     <div class="row justify-content-center">
-        <div class="col-10">
+        <div class="col-9">
           <div className="row">
             <div className="col-3">
                 <img src={require('./img/credibank-white.png')} className="img-fluid" alt="Logo Wallid"/>

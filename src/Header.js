@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Header(/*props*/) {
   return (
@@ -7,9 +8,9 @@ function Header(/*props*/) {
             <div className="col-9">
                 <div className="row">
                     <div className="col-2">
-                        <a className="site-name" href="https://wallid.io/pilotidvalidation/#/">
+                        <NavLink className="site-name" exact to="/">
                             <img src={require("./img/credibank.png")} className="img-fluid" alt="Credibank Logo"/>
-                        </a>
+                        </NavLink>
                     </div>
                     <div className="col-7 offset-3">
                         <div className="row text-uppercase text-right">
@@ -39,10 +40,10 @@ function Header(/*props*/) {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <a className="nav-link" href="https://wallid.io/pilotidvalidation/#/" target="_self">Credibank</a>
+                            <NavLink className="nav-link" exact to="/" activeClassName="selected">Credibank</NavLink>
                         </li>
                         <li className="nav-item active">
-                            <a className="nav-link" href="https://wallid.io/importid.html" target="_self">Personal Credit Application</a>
+                            <NavLink className="nav-link" exact to="/apply" activeClassName="selected">Personal Credit Application</NavLink>
                         </li>
                         <li className="nav-item active">
                             <a className="nav-link" href="#">Products</a>
