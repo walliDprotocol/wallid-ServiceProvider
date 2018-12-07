@@ -98,27 +98,14 @@ class SubmitData extends React.Component {
     if (window.web3) {
       return (
         <div>
-          <div class="form-group">
-            <div className="row">
-              <div className="col-sm-12 col-md-8 headerTextImportId">
-                <h2>Step 6 - Submit your application</h2>
-              </div>
-            </div>
-            <p>
-              Your identity attributes were successfully verified by Wallid.
-            </p>
-            <p>
-              You can now submit your application to personal credit with
-              Credibank.
-            </p>
+          <div className="form-group form-content">
+            <h2 className="title">Step 5 - Submit your application</h2>
+            <p className="submit-msg">Your identity attributes were successfully verified by Wallid.<br/>
+            You can now submit your application to personal credit with Credibank.</p>
           </div>
           <form onSubmit={this.handleSubmit}>
-            <div class="form-group">
-              <input
-                type="submit"
-                value="Submit"
-                className="btn btn-block btn-lg btnStyle btnNext"
-              />
+            <div class="btn-container text-right">
+              <button className="btn btn-next">Submit</button>
               <p className="text-center">
                 <a className="text-white" href="https://metamask.io/">
                   what it means?
@@ -130,15 +117,15 @@ class SubmitData extends React.Component {
       );
     } else {
       return (
-        <div>
-          <p>No MetaMask detected.</p>
-          <p>To prove your identity connect with metamask.</p>
-          <p>
-            <a href="https://metamask.io/">What is Metamask?</a>
-          </p>
-          <p>
-            <a href="https://metamask.io/">Download Metamask?</a>
-          </p>
+        <div className="form-content auto-step">
+          <h2 className="title">Step 5 - Submit your application</h2>
+          <br />
+          <div align="center">
+            <p className="err-msg">No MetaMask detected.</p>
+              <p>To prove your identity connect with metamask.</p>
+              <p><a href="https://metamask.io/">What is Metamask?</a></p>
+              <p><a href="https://metamask.io/">Download Metamask?</a></p>
+          </div>
         </div>
       );
     }
