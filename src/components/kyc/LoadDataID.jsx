@@ -196,32 +196,29 @@ class LoadDataID extends React.Component {
   render() {
     if (window.web3) {
       return (
-        <div>
-          <div className="row">
-            <div className="col-sm-12 col-md-8 headerTextImportId">
-              <h2>Step 3 - Loading data from the blockchain</h2>
-            </div>
-          </div>
+        <div className="form-content step-2">
+          <h2 className="title">Step 2 - Provide Your Identity Information</h2>
           <br />
           <div align="center">
-            <h2>Please wait....</h2>
-            <p>Operation ID: {this.state.opid}</p>
-            <Spinner name="wandering-cubes" color="orange" />
+            <p className="wait-msg">Please wait....</p>
+            <Spinner name="ball-clip-rotate" color="#1a9fff" className="loading"/>
+            <p className="opid-msg">Operation ID: {this.state.opid}</p>
           </div>
           <br />
         </div>
       );
     } else {
       return (
-        <div>
-          <p>No MetaMask detected.</p>
-          <p>To prove your identity connect with metamask.</p>
-          <p>
-            <a href="https://metamask.io/">What is Metamask?</a>
-          </p>
-          <p>
-            <a href="https://metamask.io/">Download Metamask?</a>
-          </p>
+        <div className="form-content step-2">
+          <h2 className="title">Step 2 - Provide Your Identity Information</h2>
+          <br />
+          <div align="center">
+            <p className="err-msg">No MetaMask detected.</p>
+              <p>To prove your identity connect with metamask.</p>
+              <p><a href="https://metamask.io/">What is Metamask?</a></p>
+              <p><a href="https://metamask.io/">Download Metamask?</a></p>
+          </div>
+          <br />
         </div>
       );
     }

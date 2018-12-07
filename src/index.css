@@ -256,6 +256,62 @@ p {
     padding: 9px 26px;
 }
 
+.collapse-container {
+    position: relative;
+    margin-top: 14px;
+}
+
+.btn-collapse {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 2.38;
+    background-color: #fff;
+    color: #1a9fff;
+    width: 100%;
+    text-align: left;
+    padding: 5px 31px;
+}
+
+.collapse-container i.fas {
+    width: 20px;
+    float: left;
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    z-index: 1000;
+    color: #1a9fff;
+}
+
+.select-container {
+    position: relative;
+}
+
+.select-container i.fas {
+    width: 20px;
+    float: left;
+    position: absolute;
+    top: 12px;
+    right: 5px;
+    z-index: 1000;
+    color: #4a4a4a;
+}
+
+.btn-metamask {
+    background-color: #fff;
+    border: 1px solid #1a9fff;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 1.33;
+    color: #1a9fff;
+    padding: 9px 20px;
+}
+
+.err-msg {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #d0021b;
+}
 
 /* General */
 
@@ -532,6 +588,10 @@ h2.title {
     margin-top: 36px;
 }
 
+.form-content.step-2 {
+    margin-bottom: 234px;
+}
+
 .form-content .title {
     font-size: 26px;
     font-weight: 600;
@@ -548,6 +608,38 @@ h2.title {
 
 .form-content .label.how-much {
     margin-top: 30px;
+}
+
+.form-content .form-group select {
+    border: 1px solid #1a9fff;
+}
+
+.form-content .msg {
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #164465;
+}
+
+.form-content .wait-msg {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content .opid-msg {
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #164465;
+}
+
+.form-content .loading {
+    margin-top: 14px;
+    margin-bottom: 31px;
 }
 
 .slider-input {
@@ -567,6 +659,11 @@ h2.title {
     margin-top: -27px;
     margin-right: 10px;
     pointer-events: none;
+}
+
+.fake-form input {
+    background-color: #f2f2f2;
+    border: none;
 }
 
 /* SECTION 2 Styles,
