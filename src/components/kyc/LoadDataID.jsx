@@ -198,20 +198,17 @@ class LoadDataID extends React.Component {
       return (
         <div className="form-content auto-step">
           <h2 className="title">Step 2 - Provide Your Identity Information</h2>
-          <br />
           <div align="center">
             <p className="wait-msg">Please wait....</p>
             <Spinner name="ball-clip-rotate" color="#1a9fff" className="loading"/>
             <p className="opid-msg">Operation ID: {this.state.opid}</p>
           </div>
-          <br />
         </div>
       );
     } else {
       return (
         <div className="form-content auto-step">
           <h2 className="title">Step 2 - Provide Your Identity Information</h2>
-          <br />
           <div align="center">
             <p className="err-msg">No MetaMask detected.</p>
               <p>To prove your identity connect with metamask.</p>
