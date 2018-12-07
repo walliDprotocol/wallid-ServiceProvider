@@ -1,6 +1,7 @@
 import React from "react";
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import Web3 from 'web3';
+import { Row, Col } from 'reactstrap';
 import WallidContract from '../../wallid/wallid.js';
 import * as WallidConst from '../../wallid/const.js';
 
@@ -157,22 +158,12 @@ class VerifyData extends React.Component {
   render() {
     if(window.web3){
       return (
-        <div>
-          <div className="row">
-            <div className="col-sm-12 col-md-8 headerTextImportId">
-              <h2>
-                Step 5 - Verify your data
-              </h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-
+        <div className="form-content auto-step">
+          <h2 className="title">Step 5 - Verify your data</h2>
+          <Row>
+            <Col md="6">
               <div class="form-group">
-                <br />
-                <label className="text-white">
-                  Your encrypted data:
-                </label>
+                <label className="label">Your encrypted data:</label>
                 <textarea
                   readOnly
                   rows="10"
@@ -184,9 +175,7 @@ class VerifyData extends React.Component {
                 <div class="form-group">
                 </div>
                 <br />
-                  <label className="text-white">
-                    Your verifyId data:
-                  </label>
+                  <label className="label">Your verifyId data:</label>
                   <textarea
                     readOnly
                     rows="10"
@@ -196,62 +185,39 @@ class VerifyData extends React.Component {
                     class="form-control"
                     />
               </div>
-            </div>
-            <div class="col-sm">
-              <br />
-              <label className="text-white">
-                Your decrypted data:
-              </label>
+            </Col>
+            <Col md="6">
+              <label className="label">Your decrypted data:</label>
               <BootstrapTable
                 data={this.state.data}
                 hover
                 condensed
                 pagination
-                className="text-white"
+                className="text-darkblue"
                 >
-                <TableHeaderColumn
-                  dataField="item"
-                  width='50%'
-                  className="text-white"
-                  isKey={true}>Item</TableHeaderColumn>
-                <TableHeaderColumn dataField="value" className="text-white" width='50%'>Value</TableHeaderColumn>
+                <TableHeaderColumn dataField="item" width='50%' className="text-darkblue" isKey={true}>Item</TableHeaderColumn>
+                <TableHeaderColumn dataField="value" className="text-darkblue" width='50%'>Value</TableHeaderColumn>
               </BootstrapTable>
-            </div>
-          </div>
+            </Col>
+          </Row>
           <form onSubmit={this.handleSubmit} >
             <div class="form-group">
-              <input
-                type="submit"
-                value="Verify ID"
-                className="btn btn-block btn-lg btnStyle btnNext" />
-              <p class="text-center">
-                <a className="text-white" href="https://metamask.io/">
-                  what it means?
-                </a>
-              </p>
+              <button className="btn btn-white">Verify ID</button>
             </div>
           </form>
         </div>
       );
       }else{
         return (
-          <div>
-            <p>
-              No MetaMask detected.
-            </p>
-            <p>
-              To prove your identity connect with metamask.
-            </p>
-            <p>
-              <a href="https://metamask.io/">
-                What is Metamask?
-              </a>
-            </p>
-            <p>
-              <a href="https://metamask.io/">
-                Download Metamask?
-              </a>
-            </p>
+          <div className="form-content auto-step">
+            <h2 className="title">Step 5 - Verify your data</h2>
+            <br />
+            <div align="center">
+              <p className="err-msg">No MetaMask detected.</p>
+                <p>To prove your identity connect with metamask.</p>
+                <p><a href="https://metamask.io/">What is Metamask?</a></p>
+                <p><a href="https://metamask.io/">Download Metamask?</a></p>
+            </div>
           </div>
         );
       }
