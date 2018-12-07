@@ -12,9 +12,6 @@ import store from "./../js/store/index";
 import { CREDIT_STATE } from "./../js/constants/action-types";
 
 const styles = theme => ({
-  root: {
-    width: '90%',
-  },
   instructions: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
@@ -25,8 +22,24 @@ const theme = createMuiTheme({
   overrides: {
     MuiStepIcon: {
       root: {
-        '&$completed': { color: '#1a9fff' },
-        '&$active': { color: '#1a9fff' },
+        '&$completed': {
+          color: '#1a9fff'
+        },
+        '&$active': {
+          color: '#1a9fff'
+        },
+      }
+    },
+    MuiStepLabel: {
+      label: {
+        fontFamily: 'Source Sans Pro',
+        fontSize: '14px',
+        maxWidth: '120px',
+        margin: '0px auto',
+        color: '#164465',
+        '&$active': {
+          color: '#164465'
+        }
       }
     }
   }
