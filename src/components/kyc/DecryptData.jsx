@@ -181,111 +181,96 @@ class DecryptData extends React.Component {
   render() {
     if (window.web3) {
       return (
-        <div>
-          <div className="row">
-            <div className="col-sm-12 col-md-8 headerTextImportId">
-              <h2>Step 4 - Decrypt your data Locally</h2>
+        <div className="form-content auto-step">
+          <h2 className="title">Step 3 - Decrypt your data locally</h2>
+          <form onSubmit={this.handleSubmit}>
+            <div class="form-group">
+              <br />
+              <label className="label">Your encrypted data:</label>
+              <textarea
+                readOnly
+                rows="5"
+                value={this.state.dataIdentityIdEncrypted}
+                type="text"
+                name="EncryptedData"
+                class="form-control"
+              />
             </div>
-          </div>
-          <div class="row justify-content-start">
-            <div class="col-sm-12 col-md-12">
-              <form onSubmit={this.handleSubmit}>
-                <div class="form-group">
-                  <br />
-                  <label className="text-white">Your encrypted data:</label>
-                  <textarea
-                    readOnly
-                    rows="5"
-                    value={this.state.dataIdentityIdEncrypted}
-                    type="text"
-                    name="EncryptedData"
-                    class="form-control"
-                  />
-                </div>
-                <div class="form-group">
-                  <br />
-                  <label className="text-white">
-                    Your verifyId data encrypted:
-                  </label>
-                  <textarea
-                    readOnly
-                    rows="5"
-                    value={this.state.dataVerifyIdEncrypted}
-                    type="text"
-                    name="EncryptedData"
-                    class="form-control"
-                  />
-                </div>
-                <div className="disclaimer">
-                  <br />
-                  <div className="form-inline">
-                    <div>
-                      <p>
-                        <strong> Disclaimer: </strong> Current Metamask build
-                        doesn't support the features do encrypt data with
-                        users'private keys. It will be available as soon. you
-                        can encrypt your ID data with a password of your choice{" "}
-                        <strong>(recommended action)</strong> Otherwise you can
-                        choose to allow MyEtheriD to encrypt your ID data with a
-                        default password (We do not recommend this action)
-                      </p>
-                    </div>
-                    <Switch
-                      onChange={this.handleUsePassword}
-                      checked={this.state.isManualPassword}
-                      id="normal-switch"
-                    />
-                  </div>
-                  <div
-                    className="form-inline"
-                    hidden={!this.state.isManualPassword ? true : false}
-                  >
-                    <label className="text-white">
-                      Password : &nbsp; &nbsp;
-                    </label>
-
-                    <input
-                      style={{ width: "300px" }}
-                      hidden={!this.state.isManualPassword ? true : false}
-                      id="chiperPassword"
-                      name="chiperPassword"
-                      onChange={this.handleChange}
-                      className="form-control"
-                      type="password"
-                      placeholder="Insert password to decrypt your data"
-                      required={this.state.isManualPassword ? true : false}
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="form-group">
-                  <input
-                    type="submit"
-                    value="Decrypt ID"
-                    className="btn btn-block btn-lg btnStyle btnNext"
-                  />
-                  <p className="text-center">
-                    <a className="text-white" href="https://metamask.io/">
-                      what it means?
-                    </a>
+            <div class="form-group">
+              <br />
+              <label className="label">Your verifyId data encrypted:</label>
+              <textarea
+                readOnly
+                rows="5"
+                value={this.state.dataVerifyIdEncrypted}
+                type="text"
+                name="EncryptedData"
+                class="form-control"
+              />
+            </div>
+            <div className="disclaimer">
+              <br />
+              <div className="form-inline">
+                <div>
+                  <p className="disclaimer">
+                    <strong> Disclaimer: </strong> Current Metamask build doesn't support the features do encrypt data with users'private keys. It will be available as soon. you can encrypt your ID data with a password of your choice{" "} <strong>(recommended action)</strong> Otherwise you can choose to allow MyEtheriD to encrypt your ID data with a default password <strong>(We do not recommend this action)</strong>.
                   </p>
                 </div>
-              </form>
+                <Switch
+                  onChange={this.handleUsePassword}
+                  checked={this.state.isManualPassword}
+                  id="normal-switch"
+                  onHandleColor="#1a9fff"
+                  onColor="#d8d8d8"
+                  offColor="#d8d8d8"
+                />
+              </div>
+              <div
+                className="form-inline password"
+                hidden={!this.state.isManualPassword ? true : false}
+              >
+                <label>Password:</label>
+
+                <input
+                  style={{ width: "300px" }}
+                  hidden={!this.state.isManualPassword ? true : false}
+                  id="chiperPassword"
+                  name="chiperPassword"
+                  onChange={this.handleChange}
+                  className="form-control"
+                  type="password"
+                  placeholder="Insert password to decrypt your data"
+                  required={this.state.isManualPassword ? true : false}
+                />
+              </div>
             </div>
-          </div>
+            <br />
+            <div class="form-group">
+              <input
+                type="submit"
+                value="Decrypt ID"
+                className="btn btn-metamask"
+              />
+            <p className="metamask-link">
+                <a href="https://metamask.io/">
+                  What it means?
+                </a>
+              </p>
+            </div>
+          </form>
         </div>
       );
     } else {
       return (
-        <div>
-          <p>No MetaMask detected.</p>
-          <p>To prove your identity connect with metamask.</p>
-          <p>
-            <a href="https://metamask.io/">What is Metamask?</a>
-          </p>
-          <p>
-            <a href="https://metamask.io/">Download Metamask?</a>
-          </p>
+        <div className="form-content auto-step">
+          <h2 className="title">Step 3 - Decrypt your data locally</h2>
+          <br />
+          <div align="center">
+            <p className="err-msg">No MetaMask detected.</p>
+              <p>To prove your identity connect with metamask.</p>
+              <p><a href="https://metamask.io/">What is Metamask?</a></p>
+              <p><a href="https://metamask.io/">Download Metamask?</a></p>
+          </div>
         </div>
       );
     }
