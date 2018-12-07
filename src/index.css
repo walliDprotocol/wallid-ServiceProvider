@@ -296,7 +296,7 @@ p {
     color: #4a4a4a;
 }
 
-.btn-metamask {
+.btn-white {
     background-color: #fff;
     border: 1px solid #1a9fff;
     border-radius: 4px;
@@ -311,6 +311,17 @@ p {
     font-size: 16px;
     line-height: 1.5;
     color: #d0021b;
+}
+
+/* Text colors */
+
+.text-darkblue {
+    color: #164465;
+}
+
+.text-darkblue-bold {
+    color: #164465;
+    font-weight: 600;
 }
 
 /* General */
@@ -622,7 +633,7 @@ h2.title {
 }
 
 .form-content .wait-msg {
-    margin-top: 15px;
+    margin-top: 35px;
     text-align: center;
     font-size: 16px;
     font-weight: 600;
@@ -631,10 +642,24 @@ h2.title {
 }
 
 .form-content .opid-msg {
-  text-align: center;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #164465;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content .submit-msg {
+    margin-top: 39px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content .finish-msg {
+    margin-top: 36px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #164465;
 }
 
 .form-content .loading {
