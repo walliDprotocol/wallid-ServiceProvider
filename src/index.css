@@ -414,8 +414,11 @@ main {
 }
 
 /* Home */
-.banner {
+.page-content {
     margin-top: 69px;
+}
+
+.banner {
     position: relative;
 }
 
@@ -484,6 +487,46 @@ main {
     line-height: 1.33;
     padding: 29px 40px;
     color: #164465;
+}
+
+/* Apply page */
+
+h2.title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 0.75;
+    color: #1a9fff;
+    text-align: left;
+}
+
+.desc {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content {
+    background-color: #f2f2f2;
+    padding: 44px 64px;
+}
+
+.form-content .title {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 0.92;
+    color: #164465;
+}
+
+.form-content .label {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.slider-input {
+    max-width: 100px;
 }
 
 /* SECTION 2 Styles,
