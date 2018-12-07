@@ -152,7 +152,7 @@ class IdentitySelect extends React.Component {
   render() {
     if (window.web3) {
       return (
-        <div className="form-content step-2">
+        <div className="form-content auto-step">
           <h2 className="title">Step 2 - Provide Your Identity Information</h2>
           <br />
           <label className="label">Please choose one of the following methods:</label>
@@ -283,7 +283,7 @@ class IdentitySelect extends React.Component {
       );
     } else {
       return (
-        <div className="form-content step-2">
+        <div className="form-content auto-step">
           <h2 className="title">Step 2 - Provide Your Identity Information</h2>
           <br />
           <label className="label">Please choose one of the following methods:</label>

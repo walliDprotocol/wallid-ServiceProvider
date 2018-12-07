@@ -588,7 +588,7 @@ h2.title {
     margin-top: 36px;
 }
 
-.form-content.step-2 {
+.form-content.auto-step {
     margin-bottom: 234px;
 }
 
@@ -664,6 +664,34 @@ h2.title {
 .fake-form input {
     background-color: #f2f2f2;
     border: none;
+}
+
+.form-content textarea.form-control {
+    background-color: #fff;
+}
+
+.form-content .disclaimer {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content .password {
+    margin-top: 30px;
+}
+
+.form-content .password label {
+    color: #164465;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+.form-content .metamask-link {
+    margin-top: 14px;
+}
+
+.form-content .metamask-link a {
+    color: #1a9fff;
 }
 
 /* SECTION 2 Styles,

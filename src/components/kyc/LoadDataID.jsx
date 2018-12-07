@@ -196,7 +196,7 @@ class LoadDataID extends React.Component {
   render() {
     if (window.web3) {
       return (
-        <div className="form-content step-2">
+        <div className="form-content auto-step">
           <h2 className="title">Step 2 - Provide Your Identity Information</h2>
           <br />
           <div align="center">
@@ -209,7 +209,7 @@ class LoadDataID extends React.Component {
       );
     } else {
       return (
-        <div className="form-content step-2">
+        <div className="form-content auto-step">
           <h2 className="title">Step 2 - Provide Your Identity Information</h2>
           <br />
           <div align="center">
@@ -218,7 +218,6 @@ class LoadDataID extends React.Component {
               <p><a href="https://metamask.io/">What is Metamask?</a></p>
               <p><a href="https://metamask.io/">Download Metamask?</a></p>
           </div>
-          <br />
         </div>
       );
     }
