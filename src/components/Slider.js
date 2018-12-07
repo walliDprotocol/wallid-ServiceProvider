@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/lab/Slider';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Row, Col } from 'reactstrap';
 
 const styles = {
   slider: {
@@ -46,8 +47,8 @@ class StepSlider extends React.Component {
 
     return (
       <div className={classes.root}>
-        <div className="row">
-          <div className="col-7">
+        <Row>
+          <Col md="7">
             <MuiThemeProvider theme={theme}>
               <Slider
                 classes={{ container: classes.slider }}
@@ -58,11 +59,11 @@ class StepSlider extends React.Component {
                 onChange={ this.handleChange }
               />
             </MuiThemeProvider>
-          </div>
-          <div className="col-4">
+          </Col>
+          <Col md="4">
             <input className="form-control slider-input" value={ value.toLocaleString('pt') + ' €' } required/>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     );
   }
