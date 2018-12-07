@@ -205,7 +205,7 @@ class IdentitySelect extends React.Component {
                       <input
                         type="submit"
                         value="Connect with metamask"
-                        className="btn btn-metamask"
+                        className="btn btn-white"
                       />
                     </div>
                   </form>

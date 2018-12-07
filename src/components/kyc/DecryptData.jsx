@@ -221,8 +221,8 @@ class DecryptData extends React.Component {
                   checked={this.state.isManualPassword}
                   id="normal-switch"
                   onHandleColor="#1a9fff"
-                  onColor="#d8d8d8"
-                  offColor="#d8d8d8"
+                  onColor="#b8b8b8"
+                  offColor="#b8b8b8"
                 />
               </div>
               <div
@@ -246,11 +246,7 @@ class DecryptData extends React.Component {
             </div>
             <br />
             <div class="form-group">
-              <input
-                type="submit"
-                value="Decrypt ID"
-                className="btn btn-metamask"
-              />
+              <button className="btn btn-white">Decrypt ID</button>
             <p className="metamask-link">
                 <a href="https://metamask.io/">
                   What it means?
