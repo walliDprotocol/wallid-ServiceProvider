@@ -11,6 +11,7 @@ import Finish from "./kyc/Finish";
 
 import store from "../js/store/index";
 
+import { setCreditState } from "./../js/actions/index";
 import { CREDIT_STATE } from "../js/constants/action-types";
 
 class CreditForm extends React.Component {
@@ -22,6 +23,10 @@ class CreditForm extends React.Component {
   }
 
   componentWillMount() {
+    store.dispatch(
+      setCreditState(CREDIT_STATE["CREDIT_STATE_PURPOSE_SELECT_SELECT"])
+    );
+
     store.subscribe(() => {
       this.setState({
         creditState: store.getState().creditState

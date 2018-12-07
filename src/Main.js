@@ -13,7 +13,7 @@ class Main extends Component {
       <HashRouter>
         <div>
           <Header />
-          <div className="row justify-content-center">
+          <div className="row justify-content-center page-content">
               <div className="col-9">
                   <div className="content">
                       <Route exact path="/" component={Home}/>
