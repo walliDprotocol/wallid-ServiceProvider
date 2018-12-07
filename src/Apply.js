@@ -15,7 +15,7 @@ class Apply extends Component {
             Your personal funding might be just 5 minutes away.</p>
         <br />
         <Stepper/>
-        <div className="form-content">
+        <div className="">
             <CreditForm />
         </div>
       </div>

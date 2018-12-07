@@ -237,6 +237,25 @@ p {
     color: #fff;
 }
 
+/* Buttons */
+
+.btn-container {
+    margin-top: 14px;
+    margin-bottom: 220px;
+}
+
+.btn-next {
+    background-color: #1a9fff;
+    text-transform: uppercase;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.33;
+    text-align: center;
+    width: 134px;
+    padding: 9px 26px;
+}
+
 
 /* General */
 
@@ -508,7 +527,9 @@ h2.title {
 
 .form-content {
     background-color: #f2f2f2;
+    border-radius: 8px;
     padding: 44px 64px;
+    margin-top: 36px;
 }
 
 .form-content .title {
@@ -525,8 +546,27 @@ h2.title {
     color: #164465;
 }
 
+.form-content .label.how-much {
+    margin-top: 30px;
+}
+
 .slider-input {
     max-width: 100px;
+}
+
+.form-content select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    border: none;
+    color: #164465;
+}
+
+.form-content select + i.fas {
+    float: right;
+    margin-top: -27px;
+    margin-right: 10px;
+    pointer-events: none;
 }
 
 /* SECTION 2 Styles,

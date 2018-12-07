@@ -47,46 +47,40 @@ class PurposeSelect extends React.Component {
   render() {
     return (
       <div>
-        <h2 className="title">Step 1 - Funding purpose and values</h2>
-          <form onSubmit={this.handleSubmit}>
-            <div class="form-group">
-              <br />
-              <label className="label">Select the purpose:</label>
-              <select
-                class="form-control"
-                name="yourPurpose"
-                required
-                onChange={this.handleChange}
-              >
-                <option value="" selected disabled>
-                  Select the purpose
-                </option>
-                <option value="NewCar">New Car</option>
-                <option value="NewHouse">New House</option>
-                <option value="Construction">University degree</option>
-                <option value="Private">Holidays</option>
-              </select>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group form-content">
+            <h2 className="title">Step 1 - Funding purpose and values</h2>
+            <br />
+            <label className="label">Select the purpose:</label>
+            <select
+              class="form-control"
+              name="yourPurpose"
+              required
+              onChange={this.handleChange}
+            >
+              <option value="" selected disabled>
+                Select the purpose
+              </option>
+              <option value="NewCar">New Car</option>
+              <option value="NewHouse">New House</option>
+              <option value="Construction">University degree</option>
+              <option value="Private">Holidays</option>
+            </select>
+            <i class="fas fa-chevron-down"></i>
 
-              <label className="label">
-                How much funding do you need? (total in euros)
-              </label>
-              <Slider />
-            </div>
-            <div>
-              <div class="form-group">
-                <input
-                  type="submit"
-                  value="Next Step"
-                  className="btn btn-block btn-lg btnStyle btnNext"
-                />
-                <p className="text-center">
-                  <a className="text-white" href="https://metamask.io/">
-                    what it means?
-                  </a>
-                </p>
-              </div>
-            </div>
-          </form>
+            <label className="label how-much">
+              How much funding do you need? (total in euros)
+            </label>
+            <Slider />
+          </div>
+          <div class="btn-container text-right">
+            <input
+              type="submit"
+              value="Next Step"
+              className="btn btn-next"
+            />
+          </div>
+        </form>
       </div>
     );
   }
