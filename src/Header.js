@@ -1,36 +1,37 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Row, Col } from 'reactstrap';
 
 function Header(/*props*/) {
   return (
     <header>
-        <div className="row justify-content-center topbar">
-            <div className="col-9">
-                <div className="row">
-                    <div className="col-2">
+        <Row className="justify-content-center topbar">
+            <Col md="9">
+                <Row>
+                    <Col md="2">
                         <NavLink className="site-name" exact to="/">
                             <img src={require("./img/credibank.png")} className="img-fluid" alt="Credibank Logo"/>
                         </NavLink>
-                    </div>
-                    <div className="col-7 offset-3">
-                        <div className="row text-uppercase text-right">
-                            <div className="col-3 offset-1">
+                    </Col>
+                    <Col md={{ size: 7, offset: 3 }}>
+                        <Row className="text-uppercase text-right">
+                            <Col md={{ size: 3, offset: 1 }}>
                                 <p className="item">Directbank</p>
-                            </div>
-                            <div className="col-3">
+                            </Col>
+                            <Col md="3">
                                 <input className="input" type="text" placeholder="User code"></input>
-                            </div>
-                            <div className="col-3">
+                            </Col>
+                            <Col md="3">
                                 <p className="item">Individuals <i class="fas fa-chevron-down"></i></p>
-                            </div>
-                            <div className="col-2">
+                            </Col>
+                            <Col md="2">
                                 <p className="item">En <i class="fas fa-chevron-down"></i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+            </Col>
+        </Row>
         <nav className="navbar navbar-expand-md navbar-gray">
             <div>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"

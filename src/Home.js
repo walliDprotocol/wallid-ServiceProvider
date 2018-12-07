@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Row, Col } from "reactstrap";
 
 class Home extends Component {
 
@@ -18,26 +19,26 @@ class Home extends Component {
                 <i class="fas fa-circle"></i>
             </div>
         </div>
-        <div className="row">
-            <div className="col-4">
+        <Row>
+            <Col md="4">
                 <div className="products">
                     <img src={require("./img/product_1.png")} className="img-fluid" alt="Product 1"/>
                     <p>Credibank applies WalliD validation service to its's Onboarding proccess</p>
                 </div>
-            </div>
-            <div className="col-4">
+            </Col>
+            <Col md="4">
                 <div className="products">
                     <img src={require("./img/product_2.png")} className="img-fluid" alt="Product 2"/>
                     <p>Credibank is the only fully digital</p>
                 </div>
-            </div>
-            <div className="col-4">
+            </Col>
+            <Col md="4">
                 <div className="products">
                     <img src={require("./img/product_3.png")} className="img-fluid" alt="Product 3"/>
                     <p>Know more about us</p>
                 </div>
-            </div>
-        </div>
+            </Col>
+        </Row>
       </div>
     );
   }
