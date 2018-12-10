@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, withRouter } from 'react-router-dom';
 import { Row, Col } from "reactstrap";
 
 class Home extends Component {
@@ -9,7 +10,7 @@ class Home extends Component {
         <div className="banner">
             <div className="info">
                 <p>Apply to a personal Credit and get approved in less than 2 minutes</p>
-                <button>Apply here</button>
+                <button className="btn btn-apply" onClick={() => this.props.history.push('/apply')}>Apply here</button>
             </div>
             <img src={require("./img/banner_1.png")} className="img-fluid" alt="Banner"/>
             <div className="buttons">

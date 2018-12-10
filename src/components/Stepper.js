@@ -4,8 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import store from "./../js/store/index";
