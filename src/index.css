@@ -38,11 +38,58 @@ ul.header li a {
 
 /* Show it is fixed to the top */
 body {
-    /* min-height: 75rem; */
     min-height: 60rem;
-    padding-top: 4.5rem;
+    padding-top: 2rem;
     overflow-x: hidden;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.site-name {
+    /* margin-left: 80px; */
+}
+
+.site-name img {
+    margin-top: 12px;
+}
+
+.topbar {
+    /* padding: 0px 100px; */
+}
+
+.topbar .item {
+    margin-top: 12px;
+    font-size: 18px;
+    color: #000;
+    width: 100%;
+    color: #164465;
+}
+
+.topbar .item i {
+    margin-left: 10px;
+}
+
+.topbar .input {
+    padding: 7px 16px;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    border: none;
+    margin-top: 7px;
+    width: 163px;
+    color: #a6a6a6;
+    font-size: 16px;
+}
+
+.topbar .select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  font-size: 18px;
+  border: none;
+  background: none;
+  padding: 7px 16px;
+  margin-top: 5px;
+  min-width: 70px;
+  color: #164465;
 }
 
 label {
@@ -57,7 +104,8 @@ label {
 h1, h2, h3, h4 {
     text-align: center;
     font-weight: 500;
-    color: #fff;
+    /* color: #fff; */
+    color: #000;
 }
 
 h1{
@@ -73,7 +121,8 @@ h3 {
 }
 
 p {
-    color: #fff;
+    /* color: #fff; */
+    color: #000;
     font-size: 16px;
     font-weight: 500;
 }
@@ -98,6 +147,10 @@ p {
 
 .bg-black {
     background-color: #1c1c1c;
+}
+
+.bg-navy {
+    background-color: #0e2637;
 }
 
 .bg-darker {
@@ -184,6 +237,92 @@ p {
     color: #fff;
 }
 
+/* Buttons */
+
+.btn-container {
+    margin-top: 14px;
+    margin-bottom: 220px;
+}
+
+.btn-next {
+    background-color: #1a9fff;
+    text-transform: uppercase;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.33;
+    text-align: center;
+    width: 134px;
+    padding: 9px 26px;
+}
+
+.collapse-container {
+    position: relative;
+    margin-top: 14px;
+}
+
+.btn-collapse {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 2.38;
+    background-color: #fff;
+    color: #1a9fff;
+    width: 100%;
+    text-align: left;
+    padding: 5px 31px;
+}
+
+.collapse-container i.fas {
+    width: 20px;
+    float: left;
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    z-index: 1000;
+    color: #1a9fff;
+}
+
+.select-container {
+    position: relative;
+}
+
+.select-container i.fas {
+    width: 20px;
+    float: left;
+    position: absolute;
+    top: 12px;
+    right: 5px;
+    z-index: 1000;
+    color: #4a4a4a;
+}
+
+.btn-white {
+    background-color: #fff;
+    border: 1px solid #1a9fff;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 1.33;
+    color: #1a9fff;
+    padding: 9px 20px;
+}
+
+.err-msg {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #d0021b;
+}
+
+/* Text colors */
+
+.text-darkblue {
+    color: #164465;
+}
+
+.text-darkblue-bold {
+    color: #164465;
+    font-weight: 600;
+}
 
 /* General */
 
@@ -228,13 +367,46 @@ main {
 }
 
 .nav-link{
-    font-size: 14px;
+    color: #164465;
+    margin-bottom: -10px;
+    padding-bottom: 15px;
+}
+
+.nav-link:hover {
+    font-weight: bold;
+    color: #164465;
+    /* border-bottom: 3px solid #1a9fff; */
+}
+
+.nav-link.selected {
+    font-weight: bold;
+    color: #164465;
+    border-bottom: 3px solid #1a9fff;
 }
 
 .navBtn {
     padding: 6px 15px;
     font-size: 14px;
     margin-top: -6px;
+}
+
+.navbar-gray {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+    margin-top: 35px;
+    background-color: #f2f2f2;
+}
+
+.search-icon {
+    position: absolute;
+    right: 208px;
+    cursor: pointer;
+    color: #1a9fff;
+    font-size: 28px;
+}
+
+.navbar-nav {
+    margin-left: 187px;
 }
 
 .sectionOne{
@@ -327,6 +499,225 @@ main {
     }
 }
 
+/* Home */
+.page-content {
+    margin-top: 69px;
+}
+
+.banner {
+    position: relative;
+}
+
+.banner .info {
+    width: 387px;
+    height: 276px;
+    background-color: #1a9fff;
+    border-radius: 4px;
+    padding: 30px 34px;
+    float: left;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    z-index: 1000;
+}
+
+.banner .info p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #fff;
+}
+
+.banner .info button {
+    margin-top: 25px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    line-height: 1.33;
+    text-align: center;
+    color: #164465;
+    background-color: #fff;
+    border-radius: 4px;
+    text-transform: uppercase;
+    padding: 8px 21px;
+    border-color: #fff;
+}
+
+.banner .buttons {
+    text-align: center;
+    margin-top: 27px;
+}
+
+.banner .buttons i {
+    color: #d8d8d8;
+    margin: 0px 8px;
+    font-size: 18px;
+}
+
+.banner .buttons i.active {
+    color: #1a9fff;
+}
+
+.products {
+    margin-top: 105px;
+    margin-bottom: 133px;
+    height: 312px;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+}
+
+.products p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.33;
+    padding: 29px 40px;
+    color: #164465;
+}
+
+/* Apply page */
+
+h2.title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 0.75;
+    color: #1a9fff;
+    text-align: left;
+}
+
+.desc {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    padding: 44px 64px;
+    margin-top: 36px;
+}
+
+.form-content.auto-step {
+    margin-bottom: 234px;
+}
+
+.form-content .title {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 0.92;
+    color: #164465;
+}
+
+.form-content .label {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content .label.how-much {
+    margin-top: 30px;
+}
+
+.form-content .form-group select {
+    border: 1px solid #1a9fff;
+}
+
+.form-content .msg {
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #164465;
+}
+
+.form-content .wait-msg {
+    margin-top: 35px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content .opid-msg {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content .submit-msg {
+    margin-top: 39px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content .finish-msg {
+    margin-top: 36px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content .loading {
+    margin-top: 14px;
+    margin-bottom: 31px;
+}
+
+.slider-input {
+    max-width: 100px;
+}
+
+.form-content select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    border: none;
+    color: #164465;
+}
+
+.form-content select + i.fas {
+    float: right;
+    margin-top: -27px;
+    margin-right: 10px;
+    pointer-events: none;
+}
+
+.fake-form input {
+    background-color: #f2f2f2;
+    border: none;
+}
+
+.form-content textarea.form-control {
+    background-color: #fff;
+}
+
+.form-content .disclaimer {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #164465;
+}
+
+.form-content .password {
+    margin-top: 30px;
+}
+
+.form-content .password label {
+    color: #164465;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+.form-content .metamask-link {
+    margin-top: 14px;
+}
+
+.form-content .metamask-link a {
+    color: #1a9fff;
+}
 
 /* SECTION 2 Styles,
   IMPORT ID SECTION 3 Styles */
@@ -982,6 +1373,7 @@ main {
 
 footer{
     min-height: 250px;
+    padding-top: 56px;
 }
 
 footer ul li{
@@ -1001,6 +1393,29 @@ footer ul li a:hover{
 footer h2{
     text-align: left;
     font-size: 20px;
+}
+
+.footer-menu {
+    font-family: 'Source Sans Pro', sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    max-width: 170px;
+}
+
+footer hr {
+    border-color: #f2f2f2;
+    opacity: 0.15;
+    margin-top: 54px;
+}
+
+.copyright {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  margin: 31px 0px;
 }
 
 @media (min-width: 768px) {
