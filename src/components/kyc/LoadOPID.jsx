@@ -143,7 +143,7 @@ class LoadOPID extends React.Component {
   render() {
     if (window.web3) {
       return (
-        <div className="form-content">
+        <div className="form-content auto-step">
           <h2 className="title">Loading OPID</h2>
           <div align="center">
             <p className="wait-msg">Please wait....</p>
