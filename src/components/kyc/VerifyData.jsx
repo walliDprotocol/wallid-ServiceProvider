@@ -101,58 +101,7 @@ class VerifyData extends React.Component {
 
   handleSubmit(event) {
     console.log("handleSubmit" + event);
-    this.verifyData();
-  }
-
-  handleErrors(response) {
-    console.log("handleErrors response = " + response);
-    if (!response.ok) {
-      console.log("response = ",response);
-      console.log("response.status = ", response.status)
-      alert("Error Verifying data\n\n",response.status)
-      throw Error(response.status);
-    }
-    return response;
-  }
-
-  handleSucess(response) {
-    console.log("handleSucess step");
-    store.dispatch(setCreditState(CREDIT_STATE['CREDIT_STATE_SUBMIT_DATA']));
-    return;
-  }
-
-  verifyData()
-  {
-    console.log("******************** verifyData *******************************");
-
-    var dataID = JSON.parse('{ "data":{"wa":"","idt":"","idtName":"","identityID":"","verifyID":""}}');
-
-    dataID.data.wa = this.state.userWa;
-    dataID.data.idt = this.state.idt;
-    dataID.data.identityID = this.state.dataIdentityId;
-    dataID.data.verifyID = this.state.dataVerifyId;
-
-
-    console.log("dataID.data.wa = " + dataID.data.wa);
-    console.log("dataID.data.idt = " + dataID.data.idt);
-    console.log("dataID.data.identityID = " + dataID.data.identityID);
-    console.log("dataID.data.verifyID = " + dataID.data.verifyID);
-
-    console.log("dataID = ", JSON.stringify(dataID));
-
-      console.log("call verifyIdProvider: " + WallidConst.VERIFYID_PROVIDER_URL);
-        fetch(WallidConst.VERIFYID_PROVIDER_URL, {
-          method: 'POST',
-          body: JSON.stringify(dataID),
-          headers: {'Content-Type': 'application/json'}
-        })
-        .then(response => this.handleErrors(response))
-        .then(response => this.handleSucess(response) )
-        .catch(error => {
-          console.log(error)
-          alert("VerifyID Service Fail")
-        }
-      );
+    store.dispatch(setCreditState(CREDIT_STATE['CREDIT_STATE_VERIFY_DATAID']));
   }
 
   render() {

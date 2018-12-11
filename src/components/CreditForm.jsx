@@ -6,6 +6,7 @@ import LoadOPID from "./kyc/LoadOPID";
 import LoadDataID from "./kyc/LoadDataID";
 import DecryptData from "./kyc/DecryptData";
 import VerifyData from "./kyc/VerifyData";
+import VerifyDataID from "./kyc/VerifyDataID";
 import SubmitData from "./kyc/SubmitData";
 import Finish from "./kyc/Finish";
 
@@ -53,6 +54,9 @@ class CreditForm extends React.Component {
 
       case CREDIT_STATE["CREDIT_STATE_VERIFY_DATA"]:
         return <VerifyData />;
+
+      case CREDIT_STATE["CREDIT_STATE_VERIFY_DATAID"]:
+        return <VerifyDataID />;
 
       case CREDIT_STATE["CREDIT_STATE_SUBMIT_DATA"]:
         return <SubmitData />;
