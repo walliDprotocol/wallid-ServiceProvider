@@ -67,6 +67,9 @@ function stepState() {
     case CREDIT_STATE["CREDIT_STATE_VERIFY_DATA"]:
       return 3;
 
+    case CREDIT_STATE["CREDIT_STATE_VERIFY_DATAID"]:
+      return 3;
+
     case CREDIT_STATE["CREDIT_STATE_SUBMIT_DATA"]:
       return 4;
 
