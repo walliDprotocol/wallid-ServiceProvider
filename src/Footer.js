@@ -35,7 +35,7 @@ function Footer(/*props*/) {
             </Col>
             <Col md="12">
               <hr></hr>
-              <p className="copyright">CrediBank ©2018 All rights reserved</p>
+              <p className="copyright">Credibank is a website intended for demo purposes only and powered by WalliD</p>
             </Col>
         </Row>
     </footer>
