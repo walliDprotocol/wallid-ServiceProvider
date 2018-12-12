@@ -170,7 +170,7 @@ class IdentitySelect extends React.Component {
                         <select
                           className="form-control"
                           required
-                          name="idt"
+                          name="provider"
                           onChange={this.handleChange}
                         >
                           <option disabled="disabled" selected="selected">
