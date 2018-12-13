@@ -177,7 +177,7 @@ class IdentitySelect extends React.Component {
                             Select a compatible Provider
                           </option>
                           <option>
-                            CaixaMagica@StoreID
+                            WalliD@StoreID
                           </option>
                         </select>
                       </div>
