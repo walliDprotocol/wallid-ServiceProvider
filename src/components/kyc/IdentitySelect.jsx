@@ -199,6 +199,9 @@ class IdentitySelect extends React.Component {
                           <option value="CC_PT_TST">
                             Cartão de Cidadão TST - República Portuguesa
                           </option>
+                          <option value="CMD_PT">
+                            Chave Móvel Digital - República Portuguesa
+                          </option>
                         </select>
                       </div>
                       <p className="msg">To prove your identity connect with metamask</p>
@@ -293,45 +296,7 @@ class IdentitySelect extends React.Component {
             <Collapse isOpen={this.state.collapseOpt1}>
               <Card>
                 <CardBody>
-                  <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                      <label className="label">Select the Provider with your ID certificate:</label>
-                      <div className="select-container">
-                        <i className="fas fa-chevron-down"></i>
-                        <select
-                          className="form-control"
-                          required
-                          name="idt"
-                          onChange={this.handleChange}
-                        >
-                          <option disabled="disabled" selected="selected">
-                            Select a compatible Provider
-                          </option>
-                          <option>
-                            CaixaMagica@StoreID
-                          </option>
-                        </select>
-                      </div>
-                      <label className="label">Select Identity Type:</label>
-                      <div className="select-container">
-                        <i className="fas fa-chevron-down"></i>
-                        <select
-                          className="form-control"
-                          required
-                          name="idt"
-                          onChange={this.handleChange}
-                        >
-                          <option disabled="disabled" selected="selected">
-                            Select a valid identity
-                          </option>
-                          <option value="CC_PT">
-                            Cartão de Cidadão - República Portuguesa
-                          </option>
-                          <option value="CC_PT_TST">
-                            Cartão de Cidadão TST - República Portuguesa
-                          </option>
-                        </select>
-                      </div>
                       <p className="msg">To prove your identity connect with metamask</p>
                         <p className="err-msg">No MetaMask detected.</p>
                         <p>To prove your identity connect with metamask.</p>
@@ -343,7 +308,6 @@ class IdentitySelect extends React.Component {
                         </a>
                       </p>
                     </div>
-                  </form>
                 </CardBody>
               </Card>
             </Collapse>
